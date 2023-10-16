@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>22.10.13</title>
+</head>
+<style>
+    body {
+        overflow-wrap: break-word;
+        line-height: 7px;
+    }
+</style>
+
+<body>
+    <script>
+        document.write(`<h3>Pirma / antra užduotis</h3>`)
+        //Nupieškite kvadratą iš “*”, 
+        //kurio kraštines sudaro 100 “*”. 
+        //Panaudokite css stilių, kad kvadratas ekrane atrodytų 
+        //kvadratinis.
+        //Prieš tai nupieštam kvadratui nupieškite raudonas istrižaines.
+        let i = 1;
+        let result = ""
+        while (i <= 10000) {
+            if(i===1 || i===100 || i===102 || i===199 || i===203 || i===298)
+            result +=`<span style="color:red">*</span>`;
+        else result += "*"
+            if (i % 100 === 0)
+                result += `<br/>`
+            i++
+
+        }
+
+        document.write(`<span>${result}</span>`)
+
+        document.write(`<h1>Bandymas</h1>`)
+
+        let y = 1
+        result = ""
+        let size = 51;
+        while (y <= size) {
+            let x = 1 //3
+            //result+="*"
+            while (x <= size) {
+                if (x === y || x === size - y+1)
+                    result += `<span style="color:red">*</span>`;
+                else result += "*";
+                x++;
+            }
+
+            result += `<br/>`
+            y++
+
+        }
+        document.write(result)
+
+
+
+        document.write(`<h3>Trečia užduotis</h3>`)
+
+        //Metam monetą. Monetos kritimo rezultatą imituojam rand() 
+        //funkcija, kur 0 yra herbas, o 1 - skaičius. 
+        //Monetos metimo rezultatus išvedame į ekraną atskiroje 
+        //eilutėje: “S” jeigu iškrito skaičius ir “H” jeigu herbas. 
+        //Suprogramuokite tris skirtingus scenarijus kai 
+        //monetos metimą stabdome:
+        //Iškritus herbui;
+        //Tris kartus iškritus herbui;
+        //Tris kartus iš eilės iškritus herbui;
+
+
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let moneta = rand(0, 1);
+        let herbas = 0;
+        let skaicius = 0;
+        i = 0;
+        while (i < 100) {
+            moneta = rand(0, 1)
+            if (moneta === 0)
+                herbas++
+            if (moneta === 1)
+                skaicius++
+            i++
+        }
+        document.write(`<p>S:${skaicius} H:${herbas}</p>`)
+
+        moneta = rand(0, 1);
+        herbas = 0;
+        skaicius = 0
+        while (true) {
+            moneta = rand(0, 1)
+            if (moneta === 0)
+                herbas++
+            if (moneta === 1)
+                skaicius++
+            break
+        }
+        document.write(`<p>S:${skaicius} H:${herbas}</p>`)
+
+        moneta = rand(0, 1);
+        herbas = 0;
+        skaicius = 0
+        while (true) {
+            moneta = rand(0, 1)
+            if (moneta === 0)
+                herbas++
+            if (moneta === 1)
+                skaicius++
+            if (herbas === 3)
+                break
+        }
+        document.write(`<p>S:${skaicius} H:${herbas}</p>`)
+
+        moneta = "";
+        herbas = 0;
+        herboSuma = 0
+        skaicius = 0
+        i = 0;
+        while (true) {
+            moneta = rand(0, 1)
+            if (moneta === 0)
+                herbas++
+               else skaicius++
+                console.log(skaicius, herbas)
+            if (moneta === 0)
+                herboSuma++
+            else herboSuma = 0
+            if (herboSuma === 3)
+                break
+            console.log(herboSuma)
+        }
+        document.write(`<p>S:${skaicius} H:${herbas}</p>`)
+
+        //Kazys ir Petras žaidžiai šaškėm. 
+        //Petras surenka taškų kiekį nuo 10 iki 20, 
+        //Kazys surenka taškų kiekį nuo 5 iki 25. 
+        //Vienoje eilutėje išvesti žaidėjų vardus su taškų kiekiu 
+        //ir “Partiją laimėjo: ​laimėtojo vardas​”. 
+        //Taškų kiekį generuokite funkcija ​rand()​. 
+        //Žaidimą laimi tas, kas greičiau surenka 222 taškus. 
+        //Partijas kartoti tol, kol kažkuris žaidėjas pirmas 
+        //surenka 222 arba daugiau taškų.
+
+        document.write(`<h3>Ketvirta užduotis</h3>`)
+
+        let petras = 0
+        let kazys = 0
+        let laimejo = "";
+        while (true) {
+            petras += rand(10, 25)
+            kazys += rand(5, 25)
+            if (petras >= 222 || kazys >= 222)
+                break
+        }
+        if (petras > kazys)
+            laimejo = "Petras"
+        else laimejo = "Kazys"
+
+        document.write(`Kazys:${kazys} Petras:${petras}`)
+        document.write(`<p> Partiją laimėjo:${laimejo}</p>`)
+
+        document.write(`<h3>Penkta užduotis A</h3>`)
+
+        //Sumodeliuokite vinies kalimą. 
+        //Įkalimo gylį sumodeliuokite pasinaudodami rand() funkcija. 
+        //Vinnies ilgis 8.5cm (pilnai sulenda į lentą).
+        // a) “Įkalkite” 5 vinis mažais smūgiais. 
+        //Vienas smūgis vinį įkala 5-20 mm. 
+        //Suskaičiuokite kiek reikia smūgių.
+        //b) “Įkalkite” 5 vinis dideliais smūgiais. 
+        //Vienas smūgis vinį įkala 20-30 mm, 
+        //bet yra 50% tikimybė (pasinaudokite rand() funkcija 
+        //tikimybei sumodeliuoti), kad smūgis nepataikys į vinį. 
+        //Suskaičiuokite kiek reikia smūgių.
+
+        let gylis = 85;
+        console.log(gylis)
+        let mazasSmugis1 = 0
+        let mazasSmugis2 = 0
+        let mazasSmugis3 = 0
+        let mazasSmugis4 = 0
+        let mazasSmugis5 = 0
+        let mazasSmugisKartai1 = 0;
+        let mazasSmugisKartai2 = 0;
+        let mazasSmugisKartai3 = 0;
+        let mazasSmugisKartai4 = 0;
+        let mazasSmugisKartai5 = 0;
+        i = 0
+        while (true) {
+            mazasSmugis1 += rand(5, 20)
+            mazasSmugisKartai1++
+            if (mazasSmugis1 >= gylis)
+                break
+        }
+        document.write(`<p>Pirmas vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai1}, vinio kalimo gylis: ${mazasSmugis1}</p>`)
+        while (true) {
+            mazasSmugis2 += rand(5, 20)
+            mazasSmugisKartai2++
+            if (mazasSmugis2 >= gylis)
+                break
+        }
+        document.write(`<p>Antras vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai2}, vinio kalimo gylis: ${mazasSmugis2}</p>`)
+        while (true) {
+            mazasSmugis3 += rand(5, 20)
+            mazasSmugisKartai3++
+            if (mazasSmugis3 >= gylis)
+                break
+        }
+        document.write(`<p>Trečias vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai3}, vinio kalimo gylis: ${mazasSmugis3}</p>`)
+        while (true) {
+            mazasSmugis4 += rand(5, 20)
+            mazasSmugisKartai4++
+            if (mazasSmugis4 >= gylis)
+                break
+        }
+        document.write(`<p>Ketvirtas vinis. Kalimo gylis:${gylis} mm,  vinio smūgiai: ${mazasSmugisKartai4}, vinio kalimo gylis: ${mazasSmugis4}</p>`)
+        while (true) {
+            mazasSmugis5 += rand(5, 20)
+            mazasSmugisKartai5++
+            if (mazasSmugis5 >= gylis)
+                break
+        }
+        document.write(`<p>Penktas vinis. Kalimo gylis:${gylis} mm,  vinio smūgiai: ${mazasSmugisKartai5}, vinio kalimo gylis: ${mazasSmugis5}</p>`)
+
+
+        document.write(`<h3>Penkta užduotis B</h3>`)
+        //b) “Įkalkite” 5 vinis dideliais smūgiais. 
+        //Vienas smūgis vinį įkala 20-30 mm, 
+        //bet yra 50% tikimybė (pasinaudokite rand() funkcija 
+        //tikimybei sumodeliuoti), kad smūgis nepataikys į vinį. 
+        //Suskaičiuokite kiek reikia smūgių.
+        mazasSmugis1 = 0
+        mazasSmugis2 = 0
+        mazasSmugis3 = 0
+        mazasSmugis4 = 0
+        mazasSmugis5 = 0
+        mazasSmugisKartai1 = 0;
+        mazasSmugisKartai2 = 0;
+        mazasSmugisKartai3 = 0;
+        mazasSmugisKartai4 = 0;
+        mazasSmugisKartai5 = 0;
+        let nepataike1 = 0;
+        let pataike1 = 0;
+        let nepataike2 = 0;
+        let pataike2 = 0;
+        let nepataike3 = 0;
+        let pataike3 = 0;
+        let nepataike4 = 0;
+        let pataike4 = 0;
+        let nepataike5 = 0;
+        let pataike5 = 0;
+
+        while (true) {
+            mazasSmugisKartai1++
+            let tikimybe = rand(0, 1)
+            if (tikimybe === 0)
+                nepataike1++;
+            else  pataike1++;
+            if (tikimybe === 1)
+            mazasSmugis1 += rand(5, 20)
+        else mazasSmugis1 += 0;
+            if (mazasSmugis1 >= gylis)
+                break
+        }
+
+        document.write(`<p>Pirmas vinis. Kalimo gylis:${gylis} mm, Pirmo vynio smūgiai: ${mazasSmugisKartai1}, vinio kalimo gylis: ${mazasSmugis1}. Pataikė kartų: ${pataike1} Nepataikė kartų: ${nepataike1}</p>`)
+        while (true) {
+            mazasSmugisKartai2++
+            let tikimybe = rand(0, 1)
+            if (tikimybe === 0)
+                nepataike2++
+            if (tikimybe === 0)
+                mazasSmugis2 += 0
+            if (tikimybe === 1)
+                pataike2++
+            if (tikimybe === 1)
+                mazasSmugis2 += rand(5, 20)
+            if (mazasSmugis2 >= gylis)
+                break
+        }
+        document.write(`<p>Antras vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai2}, vinio kalimo gylis: ${mazasSmugis2}. Pataikė kartų: ${pataike2} Nepataikė kartų: ${nepataike2}</p>`)
+        while (true) {
+            mazasSmugisKartai3++
+            let tikimybe = rand(0, 1)
+            if (tikimybe === 0)
+                nepataike3++
+            if (tikimybe === 0)
+                mazasSmugis3 += 0
+            if (tikimybe === 1)
+                pataike3++
+            if (tikimybe === 1)
+                mazasSmugis3 += rand(5, 20)
+            if (mazasSmugis3 >= gylis)
+                break
+        }
+        document.write(`<p>Trečias vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai3}, vinio kalimo gylis: ${mazasSmugis3}. Pataikė kartų: ${pataike3} Nepataikė kartų: ${nepataike3}</p>`)
+        while (true) {
+            mazasSmugisKartai4++
+            let tikimybe = rand(0, 1)
+            if (tikimybe === 0)
+                nepataike4++
+            if (tikimybe === 0)
+                mazasSmugis4 += 0
+            if (tikimybe === 1)
+                pataike4++
+            if (tikimybe === 1)
+                mazasSmugis4 += rand(5, 20)
+            if (mazasSmugis4 >= gylis)
+                break
+        }
+        document.write(`<p>Ketvirtas vinis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai4}, vinio kalimo gylis: ${mazasSmugis4}. Pataikė kartų: ${pataike4} Nepataikė kartų: ${nepataike4}</p>`)
+        while (true) {
+            mazasSmugisKartai5++
+            let tikimybe = rand(0, 1)
+            if (tikimybe === 0)
+                nepataike5++
+            if (tikimybe === 0)
+                mazasSmugis5 += 0
+            if (tikimybe === 1)
+                pataike5++
+            if (tikimybe === 1)
+                mazasSmugis5 += rand(5, 20)
+            if (mazasSmugis5 >= gylis)
+                break
+        }
+        document.write(`<p>Penktas vyiis. Kalimo gylis:${gylis} mm, vinio smūgiai: ${mazasSmugisKartai5}, vinio kalimo gylis: ${mazasSmugis5}. Pataikė kartų: ${pataike5} Nepataikė kartų: ${nepataike5}</p>`)
+
+    </script>
+</body>
+
+</html>

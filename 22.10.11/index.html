@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Namų darbas 10.11</title>
+</head>
+<style>
+    body {
+        overflow-wrap: break-word;
+    }
+</style>
+
+<body>
+    <script>
+        //Naršyklėje nupieškite linija iš 400 “*”. 
+        //Naudodami css stilių “suskaldykite” liniją taip, 
+        //kad visos žvaigždutės matytųsi ekrane;
+        //Programiškai “suskaldykite” žvaigždutes taip, 
+        //kad vienoje eilutėje nebūtų daugiau nei 50 “*”; 
+
+        let star = '*';
+        star = star.repeat(400);
+        star = star.replace(/(.{50})/g, '$1<br/>')
+        document.write(star);
+
+        let trr = 0;
+        let result = "";
+        while (trr <= 400) {
+            result += '*'
+            if (trr % 50 === 0)
+                result += '<br/>'
+            trr++
+        }
+        document.write(result.slice(1))
+
+        //Naudokite funkcija rand(). Sugeneruokite atsitiktinį 
+        //skaičių nuo 1 iki 6 ir jį atspausdinkite atitinkame h tage. 
+        //Pvz skaičius 3- rezultatas: <h3>3</h3>
+
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        let randomNumber = rand(1, 6)
+        document.write(`<h${randomNumber}>${randomNumber}</h${randomNumber}>`)
+
+        //Naudokite funkcija rand(). 
+        //Atspausdinkite 3 skaičius nuo -10 iki 10. 
+        //Skaičiai mažesni už 0 turi būti žali, 0 - raudonas, 
+        //didesni už 0 mėlyni.
+
+
+
+        let number1 = rand(-10, 10);
+        let number2 = rand(-10, 10);
+        let number3 = rand(-10, 10);
+        let i = 0
+        while (i < 1) {
+            if (number1 < 0)
+                document.write(`<p style="color:green">${number1}</p>`)
+            if (number1 === 0)
+                document.write(`<p style="color:red">${number1}</p>`)
+            if (number1 > 0)
+                document.write(`<p style="color:blue">${number1}</p>`)
+            if (number2 < 0)
+                document.write(`<p style="color:green">${number2}</p>`)
+            if (number2 === 0)
+                document.write(`<p style="color:red">${number2}</p>`)
+            if (number2 > 0)
+                document.write(`<p style="color:blue">${number2}</p>`)
+            if (number3 < 0)
+                document.write(`<p style="color:green">${number3}</p>`)
+            if (number3 === 0)
+                document.write(`<p style="color:red">${number3}</p>`)
+            if (number3 > 0)
+                document.write(`<p style="color:blue">${number3}</p>`)
+            i++
+        }
+
+        //let result1 = ""
+        //let la = 0;
+        //while (la < 3) {
+        //let ra1 = rand(-10, 10);
+        //let color = ""
+        //if (ra1 < 0)
+        //color = "green"
+        //if (ra1 === 0)
+        //color= "red"
+        //if (ra1 > 0)
+        //color= "blue"
+        //result1 += `<span style="color:${color}"">${ra1}<span>`
+        //la++}
+        //document.write(result1)
+        result1 = 0
+
+        // document.write(`<h1>${number1}</h1>`)
+        //Sukurkite kintamąjį su stringu: “An American in Paris”. 
+        //Jame ištrinti visas balses. Rezultatą atspausdinti. 
+        //Kodą pakartoti su stringais: “Breakfast at Tiffany's”, 
+        //“2001: A Space Odyssey” ir “It's a Wonderful Life”
+        let string = "An American in Paris";
+        string = string.replaceAll(/[AaEeIiOoUuyY]/g, "")
+        console.log(string)
+        document.write(`<p>${string}</p>`)
+
+        let string2 = "Breakfast at Tiffany's"
+        string2 = string2.replaceAll(/[AaEeIiOoUuyY]/g, "")
+        document.write(`<p>${string2}</p>`)
+
+        let string3 = "2001: A Space Odyssey"
+        string3 = string3.replaceAll(/[AaEeIiOoUuyY]/g, "")
+        document.write(`<p>${string3}</p>`)
+
+        let string4 = "It's a Wonderful Life"
+        string4 = string4.replaceAll(/[AaEeIiOoUuyY]/g, "")
+        document.write(`<p>${string4}</p>`)
+
+        //let balses="aeiouy"
+        //let nop=0
+        //balses += balses.toUpperCase()
+        //result1=""
+        //while (nop< string.length) {
+        //if(!balses.includes(string[nop]))
+        //result1 += string[nop]
+
+        //nop++}
+        //document.write(result1)
+
+        //Sugeneruokite 300 atsitiktinių skaičių nuo 0 iki 300, 
+        //atspausdinkite juos atskirtus tarpais ir suskaičiuokite 
+        //kiek tarp jų yra didesnių už 150.  
+        //Skaičiai didesni nei 275 turi būti raudonos spalvos.
+
+        let num = ""
+        let howMany = 0;
+        let on300 = 0;
+        let color ="";
+        let result55 ="";
+        while (on300 < 299) {
+            num = rand(0, 300); // galima tiesiog prie rand + ' '
+            if (num > 150)
+                howMany++
+            if (num > 275)
+                color="red"
+            else color="black"
+            result55 += `<span style="color:${color}">${num +=" "}</span>`
+            on300++
+        }
+        document.write(result55)
+        document.write(`<p> Daugiau nei 150: ${howMany}</p>`)
+
+        //Vienoje eilutėje atspausdinkite visus skaičius nuo 1 iki 3000, 
+        //kurie dalijasi iš 77 be liekanos. Skaičius atskirkite kableliais. 
+        //Po paskutinio skaičiaus kablelio neturi būti. 
+        //Jeigu reikia, panaudokite css, kad visi rezultatai matytųsi ekrane.
+
+
+        let newNumber = 0
+        let to3000 = 0
+        let b = " "
+
+        result = ''
+        while (to3000 < 3000) {
+            if (newNumber < 3000)
+                newNumber++
+            b = ','
+            if (Number.isInteger(newNumber / 77))
+                result += newNumber +b 
+            to3000++
+        }
+        document.write(`<span>${result.slice(0,-1)}</span>`)
+
+//i=1
+//rezultatas = ' ';
+//kablelis = ','
+// dydis = 3000
+// daliklis = 77
+//while (i<= dydis (dydis % daliklis)) {
+    // if (i===2926)
+    //kablelis = ' '
+    // if (i%77===0)
+    // rezultatas += i + kablelis;
+    //i++
+//})
+
+
+
+
+
+
+
+
+
+document.write(`<p>Pirma užduotis</p>`)
+        let loop=0;
+        i=0;
+        result=""
+        while(i<10) {
+            loop++
+            result +=loop
+            i++
+        }
+        document.write(result)
+
+        document.write(`<p>Antra užduotis</p>`)
+    </script>
+</body>
+
+</html>
