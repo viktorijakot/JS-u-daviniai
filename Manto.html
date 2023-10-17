@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Užduotėlės</title>
+</head>
+
+<body>
+    <script>
+        document.write(`<h3>Pirma užduotis</h3>`)
+        //Suskaičiuoti lyginių skaičių sumą nuo 1 iki 20
+        let sum = 0;
+        let i = 0;
+        let number = 0;
+        while (i <= 19) {
+            number++;
+            if (number % 2 === 0)
+                sum += number;
+            else sum += 0;
+            i++
+        }
+        document.write(`Lyginių skaičių suma nuo 1 iki 20: ${sum}`)
+
+        document.write(`<h3>Antra užduotis</h3>`)
+
+        //Paversti žodį atvirkščiai. 
+        //Naudojant javaScript įsivesti kintamajį žodis 
+        //priskirti jam bet kokį žodį ir kitas kintamasis 
+        //jį turi atvaizduoti atvirkščiai pvz "Turbo" turėtų 
+        //būti atvaizduotas "obruT
+
+        let word = "Gitara";
+        let secondWord = word[word.length - 1] +
+            word[word.length - 2] +
+            word[word.length - 3] +
+            word[word.length - 4] +
+            word[word.length - 5] +
+            word[word.length - 6]
+
+        document.write(`Pirmas žodis: ${word} <br/> Žodis atvaizduotas atvirkščiai: ${secondWord}`)
+
+
+        document.write(`<h3>Trečia užduotis</h3>`)
+
+        //Apskaičiuoti visų skaičių nuo 1 iki 50 sumą, 
+        //kurie dalijasi iš 5 be liekanos.
+
+        number = 0;
+        i = 0;
+        sum = 0;
+        while (i <= 49) {
+            number++;
+            if (Number.isInteger(number / 5))
+                sum += number;
+            else sum += 0;
+            i++;
+        }
+        document.write(`Visų skaičių nuo 1 iki 50, kurie dalijasi iš 5 be liekanos suma: ${sum} `)
+
+        document.write(`<h3>Ketvirta užduotis</h3>`)
+
+        //Išvesti visus lyginius skaičius nuo 1 iki 20.
+
+        number = 0;
+        i = 0;
+        let result = " ";
+        while (i<20) {
+            number++;
+            if(number % 2 === 0)
+            result += `<span>${number +=" "}<span>`;
+            i++;
+        }
+
+        document.write(`Visi lyginiai skaičiai nuo 1 iki 20: ${result}`)
+    </script>
+</body>
+
+</html>

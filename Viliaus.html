@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23.10.17</title>
+</head>
+<style>
+    body {
+        overflow-wrap: break-word;
+    }
+</style>
+
+<body>
+    <script>
+        document.write(`<h3>Pirma užduotis</h3>`);
+
+        //Sukurkite funkciją kuri priimtų parametrą "name". 
+        //Jos tikslas atspausdinti naršyklėje tekstą "Labas," 
+        //ir šalia jo perduotą vardą. Pvz "Labas, Elena".
+
+        function hello(name) {
+            return `<span>Labas, ${name}</span>`;
+        };
+
+        let sentance = hello("Elena");
+        document.write(sentance);
+
+
+        document.write(`<h3>Antra užduotis</h3>`);
+
+        //Sukurkite funkciją  kuri priimtų vieną parametrą (tekstą) 
+        //ir grąžintų atsakymą kiek simbolių yra tame tekste. 
+        //Iš funkcijos gautą rezultatą atvaizduokite naršyklėje.
+
+        function simbolsCount(text) {
+            return text = text.length
+        };
+
+        let word = simbolsCount("Viktorija");
+        document.write(`Simbolių skaičius: ${word}`);
+
+
+        document.write(`<h3>Trečia užduotis</h3>`);
+
+        //Sukurkite funkciją kuri priimtų du parametrus 
+        //"name" ir "last_name". Funkcija turi grąžinti vieną 
+        //stringą, kuriame būtų vardas ir pavardė prasidedantys 
+        //didžiosiomis raidėmis.
+
+        function firstTwoLetters(name, last_name) {
+            return `${name[0].toUpperCase() + name.slice(1)} ${last_name[0].toUpperCase() + last_name.slice(1)}`;
+        };
+
+        let nameLastName = firstTwoLetters("viktorija", "kotaite");
+        document.write(nameLastName);
+
+
+
+        document.write(`<h3>Ketvirta užduotis</h3>`);
+
+        //Parašykite funkciją kuri sugeneruotų 3 random skaičius
+        // nuo 0 iki 5 ir atspausdintų konsolėje vienoje eilutėje 
+        //atskirtus kableliais. Po paskutinio skaičiaus kablelio 
+        //neturi būti.
+
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        };
+
+        function threeNumbersConsole(a) {
+            a = "";
+            for (let i = 0; i < 3; i++) {
+                a += rand(0, 5);
+                if (i < 2);
+                a += ",";
+            }
+            return console.log(a);
+        };
+
+        threeNumbersConsole();
+
+        //atspaudinta ir document.write
+
+        function threeNumbersDocument(a) {
+            a = "";
+            for (let i = 0; i < 3; i++) {
+                a += rand(0, 5);
+                if (i < 2)
+                    a += ",";
+
+            }
+            return document.write(a);
+        }
+        threeNumbersDocument();
+
+        document.write(`<h3>Penkta užduotis</h3>`);
+
+        //Parašykite funkciją kuri priimtų tris parametrus "from" 
+        //ir "to" ir "limit". Patikrinkite ar šie perduodami 
+        //parametrai yra skaičiai ir pagal juos sugeneruokite 
+        //masyvą, kurio ilgį nusako "limit" parametras, o reikšmės
+        // from ir to nurodo atsitiktinį skaičių šiuose rėžiuose.
+
+        function array(from, to, limit) {
+            let masyvas = []
+            if (typeof from === 'number' && typeof to === "number" && typeof limit === "number") {
+                for (let i = 0; i < limit / 2; i++) {
+                    from++;
+                    to++;
+                    masyvas.push(from, to);
+                }
+                return masyvas;
+            }
+            if (typeof from !== 'number' || typeof to !== "number" || typeof limit !== "number")
+                return `<h5 style="color:red">Reikia vesti skaičius, jei norite, kad funkcija būtų atlikta</h5>`;
+        };
+        let newArray = array(2, 20, 10);
+        document.write(newArray);
+        console.log(newArray);
+
+        document.write(`<h3>Šešta užduotis</h3>`);
+
+        //Sukurkite funkciją kuri pakeltų paduotą skaičių n 
+        //laipsniu, ir grąžintų reikšmę 
+        //(perduodami du parametrai: skaičius ir laipsnis)
+
+
+        function exponentiation(number1, numberPower) {
+            return `Skaičius: ${number1} </br> Laipsnis: ${numberPower} </br> Skaičius pakeltas laipsniu: ${number1 ** numberPower}`;
+        };
+        let pakletasSkaicius = exponentiation(3, 2);
+        document.write(pakletasSkaicius);
+
+
+        document.write(`<h3>Septinta užduotis</h3>`);
+
+        // Parašykite funkciją, kurios parametras būtų tekstas, 
+        //kuris yra įterpiamas į h1 tagą. Rezultatą atvaizduokite 
+        //naršyklėje.
+
+        function hTag(text) {
+            if (typeof text !== 'number')
+                return `<h1>${text}</h1>`;
+            else return `${text}`;
+        }
+        let hTagText = hTag("Ir vėl netikėtai atėjo žiema");
+        document.write(hTagText);
+
+        document.write(`<h3>Aštunta užduotis</h3>`);
+
+        //Parašykite funkciją su dviem parametrais. 
+        //Pirmasis yra tekstas, įterpiamas į h tagą, o antrasis 
+        //tago numeris (1-6). Rašydami šią funkciją remkitės 
+        //antrame uždavinyje parašyta funkcija.
+
+        function textHtag(text, tag) {
+            if (typeof text !== 'number' && typeof tag === 'number')
+                return `<h${tag}>${text}</h$>`;
+            if (typeof text === 'number' || typeof tag !== 'number')
+                return `<h5 style="color:red">Pirmas parametras privalo būti tekstas, o antras skaičius</h5>`;
+        };
+        let textInHtag = textHtag("plaktukas", 6);
+        document.write(textInHtag);
+
+
+        document.write(`<h3>Devinta užduotis</h3>`);
+
+        //Aprašykite funkciją kuri priimtų vieną parametrą 
+        //"number" bei patikrintų ar duotas skaičius yra pirminis.
+        // Atgal grąžinkite teigiamą arba neigiamą 
+        //(boolean) atsakymą.
+
+        function boolean(number) {
+            if (number === 1 || number === 0) {
+                return `Numeris 1 arba 0 nėra pirminis skaičius`;
+            } else if (number > 1) {
+                for (let i = 2; i < number; i++) {
+                    if (number % i === 0)
+                        return number = false;
+                    else return number = true;
+                };
+            } else if (typeof number !== 'number') {
+                return `<h6 style="color:red">Funkcijai atlikti turi būti įrašytas skaičius</h6>`;
+            };
+        };
+
+        let isPrime = boolean(10);
+        document.write(`${isPrime}`);
+
+
+        document.write(`<h3>Dešimta užduotis</h3>`);
+
+        // Sugeneruokite 100 elementų masyvą kurio reikšmės 
+        //atsitiktiniai skaičiai nuo 997 iki 15991. 
+
+        let masyvas = [];
+        for (let i = 0; i < 100; i++) {
+            let number = rand(997, 15991);
+            masyvas.push(number);
+        }
+        document.write(masyvas);
+
+
+        document.write(`<h3>Vienuolikta užduotis</h3>`);
+
+        //Pasinaudodami devintoje užduotyje aprašyta funkcija 
+        //masyve palikite tik pirminius skaičius, 
+        //kurie yra didesni nei 5000;
+
+        masyvas = [];
+        for (let i = 0; i < 100; i++) {
+            let number = rand(997, 15991);
+            if (boolean(number) === true && number > 5000)
+                masyvas.push(number);
+        }
+        document.write(masyvas);
+        
+    </script>
+</body>
+
+</html>
