@@ -157,13 +157,13 @@
         //tago numeris (1-6). Rašydami šią funkciją remkitės 
         //antrame uždavinyje parašyta funkcija.
 
-        function textHtag(text, tag) {
+        function textHtag(text, tag = rand(1,6)) {
             if (typeof text !== 'number' && typeof tag === 'number')
                 return `<h${tag}>${text}</h$>`;
             if (typeof text === 'number' || typeof tag !== 'number')
                 return `<h5 style="color:red">Pirmas parametras privalo būti tekstas, o antras skaičius</h5>`;
         };
-        let textInHtag = textHtag("plaktukas", 6);
+        let textInHtag = textHtag("plaktukas");
         document.write(textInHtag);
 
 
