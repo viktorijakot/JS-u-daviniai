@@ -108,10 +108,8 @@
         function array(from, to, limit) {
             let masyvas = []
             if (typeof from === 'number' && typeof to === "number" && typeof limit === "number") {
-                for (let i = 0; i < limit / 2; i++) {
-                    from++;
-                    to++;
-                    masyvas.push(from, to);
+                for (let i = 0; i < limit; i++) {
+                    masyvas.push(rand(from, to));
                 }
                 return masyvas;
             }
