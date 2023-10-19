@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function rand(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        document.write(`<h3 style="color:grey">Pirmas uždavinys</h3>`)
+        //Sugeneruokite masyvą iš 30 elementų 
+        //(indeksai nuo 0 iki 29), kurių reikšmės yra 
+        //atsitiktiniai skaičiai nuo 5 iki 25.
+        let array = [];
+        for (let i = 0; i < 30; i++) {
+            array.push(rand(5, 25));
+        }
+        document.write(array);
+        console.log(array);
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - a)</h3>`);
+
+        //Naudodamiesi 1 uždavinio masyvu: Suskaičiuokite 
+        //kiek masyve yra reikšmių didesnių už 10;
+        let sumOf10 = 0;
+        for (i = 0; i < array.length; i++) {
+            if (array[i] > 10) {
+                sumOf10++;
+            };
+        };
+        console.log(array, sumOf10);
+        document.write(`<p>Didesnių reikšmių didesnių nei 10: ${sumOf10}</p>`);
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - b)</h3>`);
+
+        //Raskite didžiausią masyvo reikšmę ir jos indeksą;
+
+
+        let maxNumber = Math.max(...array);
+        let indexMaxNumber = array.indexOf(maxNumber);
+        document.write(`<p>Highest number is: ${maxNumber}, index of the number is: ${indexMaxNumber}</p>`)
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - c)</h3>`);
+
+        //Suskaičiuokite visų porinių (lyginių) 
+        //indeksų reikšmių sumą;
+
+        let sum = 0;
+        for (i = 0; i < array.length; i++) {
+            if (Number.isInteger(i / 2) && i !== 0)
+                sum += array[i];
+        };
+
+        document.write(`<p>Lyginių indeksų reikšmių suma: ${sum}</p>`);
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - d)</h3>`);
+
+        //Sukurkite naują masyvą, kurio reikšmės 
+        //yra 1 uždavinio masyvo reikšmes minus tos 
+        //reikšmės indeksas;
+
+        let newArray = [];
+
+        for (i = 0; i < array.length; i++) {
+            newArray.push(array[i] - i)
+        };
+        document.write(`<p>Masyvo reikšmės - jų reikšmių indeksas: ${newArray}</p>`);
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - e)</h3>`);
+
+        //Papildykite masyvą papildomais 10 elementų 
+        //su reikšmėmis nuo 5 iki 25, kad bendras 
+        //masyvas padidėtų iki indekso 39;
+
+        for (i = 0; i < 10; i++) {
+            array.push(rand(5, 25));
+        }
+        document.write(`Masyvas su papildomaos 10 elementų: ${array}`);
+        console.log(array);
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - f)</h3>`);
+
+        //Iš masyvo elementų sukurkite du naujus 
+        //masyvus. Vienas turi būti sudarytas iš 
+        //neporinių indeksų reikšmių, o kitas iš porinių 
+        //(pagal neporinį-porinį indeksą, ne reikšmę);
+
+        let arrayEven = [];
+        let arrayNotEven = [];
+
+        for (i = 0; i < array.length; i++) {
+            if (Number.isInteger(i / 2 || i !== 0))
+                arrayEven.push(array[i]);
+            else arrayNotEven.push(array[i]);
+        };
+        document.write(`<p>Even array index numbers: ${arrayEven}</p>`);
+        document.write(`<p>Not even array index numbers: ${arrayNotEven}</p>`);
+
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - g)</h3>`);
+
+        //Pirminio masyvo elementus su poriniais 
+        //indeksais padarykite lygius 0 jeigu jie 
+        //didesni už 15;
+
+        for (i = 0; i < array.length; i++) {
+            if (Number.isInteger(i / 2 || i !== 0) && array[i] > 15)
+                array[i] = 0;
+        };
+
+        document.write(`If element's index is even and element is higher than 15, element is equal 0: ${array}`)
+
+
+        document.write(`<h3 style="color:grey">Antras uždavinys - h)</h3>`);
+
+        //Suraskite pirmą (mažiausią) indeksą, kurio 
+        //elemento reikšmė didesnė už 10;
+
+        let arrayMore10 = -1;
+        for (i = 0; i < array.length; i++) {
+            arrayMore10++;
+            if (array[i] > 10)
+                break
+        }
+        document.write(`Pirmas mažiausias indeksas, kurio reikšmė didesnė už 10: ${arrayMore10}`);
+
+        document.write(`<h3 style="color:grey">Trečias uždavinys</h3>`);
+    </script>
+</body>
+
+</html>
