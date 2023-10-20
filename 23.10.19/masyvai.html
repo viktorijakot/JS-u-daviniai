@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    body {
+        word-wrap: break-word;
+    }
+</style>
 
 <body>
     <script>
@@ -133,6 +138,138 @@
         document.write(`Pirmas mažiausias indeksas, kurio reikšmė didesnė už 10: ${arrayMore10}`);
 
         document.write(`<h3 style="color:grey">Trečias uždavinys</h3>`);
+
+        //Sugeneruokite masyvą, kurio reikšmės 
+        //atsitiktinės raidės A, B, C ir D, o ilgis 200. 
+        //Suskaičiuokite kiek yra kiekvienos raidės.
+
+        let letters = ["A", "B", "C", "D"]
+        const generateLetters = (randomletters) => {
+            let letters1 = [];
+            for (i = 0; i < 200; i++) {
+                letters1.push(randomletters[rand(0, randomletters.length - 1)]);
+            };
+            return letters1
+        };
+
+        document.write(`<p>${generateLetters(letters)}</p>`)
+
+
+        document.write(`<h3 style="color:grey">Ketvirtas uždavinys</h3>`);
+
+        //Sugeneruokite 3 masyvus pagal 3 uždavinio 
+        //sąlygą. Sudėkite masyvus, sudėdami atitinkamas
+        //reikšmes. Paskaičiuokite kiek unikalių
+        //(po vieną, nesikartojančių) reikšmių ir kiek
+        //unikalių kombinacijų gavote.
+
+        let arrayLetters1 = generateLetters(letters);
+        let arrayLetters2 = generateLetters(letters);
+        let arrayLetters3 = generateLetters(letters);
+
+        document.write(`${arrayLetters1} <br/><br/> ${arrayLetters2} <br/><br/> ${arrayLetters3}`)
+
+        const sum1 = (random1, random2, random3) => {
+            let sumSame = 0;
+            let different = 0;
+            let someSame = 0;
+            for (i = 0; i < random1.length; i++) {
+                if (random1[i] === random2[i] && random1[i] === random3[i] && random2[i] === random3[i])
+                    sumSame++;
+                if (random1[i] !== random2[i] && random1[i] !== random3[i] && random2[i] !== random3[i])
+                    different++;
+                else someSame++
+            };
+            return `Same elements with same index: ${sumSame}; Unique elements: ${different}; Might be same elements in two arrays: ${someSame}`
+        };
+        console.log(arrayLetters1, arrayLetters2, arrayLetters3)
+
+        document.write(`<p>${sum1(arrayLetters1, arrayLetters2, arrayLetters3)}</p>`)
+
+        document.write(`<h3 style="color:grey">Penktas uždavinys</h3>`);
+
+        //Sugeneruokite du masyvus, kurių reikšmės 
+        //yra atsitiktiniai skaičiai nuo 100 iki 999. 
+        //Masyvų ilgiai 100. Masyvų reikšmės turi būti 
+        //unikalios savo masyve (t.y. neturi kartotis).
+
+        const generatenumbers = () => {
+            let numbers = [];
+            while (numbers.length < 100) {
+                let n = rand(100, 999)
+                if (numbers.indexOf(n) === -1)
+                    numbers.push(n);
+            };
+
+            return numbers
+        };
+        let arrayNumbers1 = generatenumbers()
+        let arrayNumbers2 = generatenumbers()
+        console.log(arrayNumbers1.indexOf(3))
+        document.write(`${arrayNumbers1} <br/><br/> ${arrayNumbers2}`)
+
+
+        document.write(`<h3 style="color:grey">Šeštas uždavinys</h3>`);
+
+        //Sugeneruokite masyvą, kuris būtų sudarytas 
+        //iš reikšmių, kurios yra pirmame 5 uždavinio 
+        //masyve, bet nėra antrame 5 uždavinio masyve.
+
+        let arrayNumber3 = [];
+        let sameNum = [];
+        for (i = 0; i < arrayNumbers1.length; i++) {
+            if (arrayNumbers1[i] !== arrayNumbers2[i])
+                arrayNumber3.push(arrayNumbers1[i])
+            else sameNum.push(arrayNumbers1[i])
+        }
+        document.write(arrayNumber3)
+
+
+        document.write(`<h3 style="color:grey">Septintas uždavinys</h3>`);
+
+
+        //Sugeneruokite masyvą iš elementų, kurie 
+        //kartojasi abiejuose 5 uždavinio masyvuose.
+        document.write(`<p>Deleted number from array(same numbers in both arrays):${sameNum}</p>`)
+
+        document.write(`<h3 style="color:grey">Aštuntas uždavinys</h3>`);
+
+        //Sugeneruokite masyvą, kurio indeksus 
+        //sudarytų 5 uždavinio pirmo masyvo reikšmės, 
+        //o jo reikšmės  būtų iš  antrojo 5 uždavinio 
+        //masyvo.
+
+        let index = [];
+        let element = [];
+        for (i = 0; i < arrayNumbers1.length; i++) {
+            index.push(arrayNumbers1[i])
+            element.push(arrayNumbers2[i])
+        }
+        console.log(index)
+        console.log(element)
+
+
+        document.write(`<h3 style="color:grey">Devintas uždavinys</h3>`);
+        //Sugeneruokite 10 skaičių masyvą pagal taisyklę:
+        // Du pirmi skaičiai- atsitiktiniai nuo 5 iki 25.
+        // Trečias, pirmo ir antro suma. Ketvirtas- antro
+        // ir trečio suma. Penktas trečio ir ketvirto 
+        //suma ir t.t.
+
+        let number10 = []
+        let numIn = 0;
+        for (i = 0; i < 2; i++) {
+            let num = rand(5, 25)
+            if (i < 2)
+                number10.push(num)
+        }
+        console.log(number10)
+        for (i = 2; i < 10; i++) {
+            numIn++
+            number10.push(number10[numIn] + number10[numIn - 1])
+        }
+        console.log(number10)
+        document.write(number10)
     </script>
 </body>
 
