@@ -146,10 +146,23 @@
         let letters = ["A", "B", "C", "D"]
         const generateLetters = (randomletters) => {
             let letters1 = [];
+            let a = 0
+            let b = 0;
+            let c = 0;
+            let d = 0;
             for (i = 0; i < 200; i++) {
                 letters1.push(randomletters[rand(0, randomletters.length - 1)]);
+                if(letters1[i] == 'A')
+                a++
+                if(letters1[i] == 'B')
+                b++
+                if(letters1[i] == 'C')
+                c++
+                if(letters1[i] == 'D')
+                d++
             };
-            return letters1
+
+            return `${letters1} <br/> A:${a}; B:${b}; C:${c}; D:${d}`
         };
 
         document.write(`<p>${generateLetters(letters)}</p>`)
@@ -162,6 +175,8 @@
         //reikšmes. Paskaičiuokite kiek unikalių
         //(po vieną, nesikartojančių) reikšmių ir kiek
         //unikalių kombinacijų gavote.
+
+        // AR TEISINGAI SUPRATAU
 
         let arrayLetters1 = generateLetters(letters);
         let arrayLetters2 = generateLetters(letters);
@@ -239,15 +254,11 @@
         //o jo reikšmės  būtų iš  antrojo 5 uždavinio 
         //masyvo.
 
-        let index = [];
-        let element = [];
-        for (i = 0; i < arrayNumbers1.length; i++) {
-            index.push(arrayNumbers1[i])
-            element.push(arrayNumbers2[i])
+        for(i = 0; i < Math.max(arrayNumbers1); i++) {
+            arrayNumbers1.map((item, index) => {
+                
+            })
         }
-        console.log(index)
-        console.log(element)
-
 
         document.write(`<h3 style="color:grey">Devintas uždavinys</h3>`);
         //Sugeneruokite 10 skaičių masyvą pagal taisyklę:
@@ -260,8 +271,9 @@
         let numIn = 0;
         for (i = 0; i < 2; i++) {
             let num = rand(5, 25)
-            if (i < 2)
+            if (i < 2) {
                 number10.push(num)
+            }
         }
         console.log(number10)
         for (i = 2; i < 10; i++) {
@@ -270,6 +282,19 @@
         }
         console.log(number10)
         document.write(number10)
+
+        const kas = []
+        for (i = 0; i < 10; i++) {
+            if (i < 2) {
+                kas.push(rand(5, 25))
+            } else {
+                kas.push(kas[i-1] + kas[i-2])
+            }
+        }
+
+        console.log({kas});
+
+
     </script>
 </body>
 
