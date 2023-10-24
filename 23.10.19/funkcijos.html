@@ -166,19 +166,23 @@
       array.push(rand(1, 33));
     }
     console.log(array);
-    while (true) {
-        if (array.map((item) => integer(item)) !== 0 && array.map((item) => item !== 1)) {
-            array.push(rand(1, 33));
-        } else break;        
-        if (array.slice(-1) === 1) {
-            array.push(rand(1, 33))
-        }
-        if (integer(array.slice(-1)) !== 0) {
-            array.push(rand(1, 33));
-        } else break;
-    };
+    // while (true) {
+    //     if (array.map((item) => integer(item)) !== 0 && array.map((item) => item !== 1)) {
+    //         array.push(rand(1, 33));
+    //     } else break;        
+    //     if (array.slice(-1) === 1) {
+    //         array.push(rand(1, 33))
+    //     }
+    //     if (integer(array.slice(-1)) !== 0) {
+    //         array.push(rand(1, 33));
+    //     } else break;
 
-    document.write(array);
+    // };
+
+
+   
+
+    // document.write(array);
 
     document.write(`<h3 style="color:grey">Dešimtas uždavinys</h3>`);
 

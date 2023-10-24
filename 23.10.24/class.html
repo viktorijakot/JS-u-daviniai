@@ -133,40 +133,43 @@
                 troleibusasNaujas.visiKeleiviai += keleiviuSkaicius;
             }
             islipa1(keleiviuSkaicius) {
-                troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
                 if (keleiviuSkaicius < this.keleiviuSkaicius) {
                     this.keleiviuSkaicius -= keleiviuSkaicius;
+                    troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
                 } else this.keleiviuSkaicius = 0;
+                if(keleiviuSkaicius > this.keleiviuSkaicius){
+                    troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
+                }
+
             }
             vaziuoja1() {
                 console.log(`Keleivių skaičius: ${this.keleiviuSkaicius}`);
             }
             keleiviuSkaiciusVisuoseTroleibusuose() {
-                if(troleibusasNaujas.visiKeleiviai > 0){
-                console.log(
-                    `Visų troleibusų keleivių skaičius: ${troleibusasNaujas.visiKeleiviai}`
-                );
+                if (troleibusasNaujas.visiKeleiviai > 0) {
+                    console.log(
+                        `Visų troleibusų keleivių skaičius: ${troleibusasNaujas.visiKeleiviai}`
+                    );
                 } else console.log(
                     `Visų troleibusų keleivių skaičius: 0`
                 );
-                
+
             }
         }
 
         const troleibusas11 = new troleibusasNaujas();
-        troleibusas11.ilipa1(10);
-        troleibusas11.ilipa1(30);
-        troleibusas11.islipa1(50);
+        troleibusas11.ilipa1(20);
+        troleibusas11.ilipa1(50);
+        troleibusas11.islipa1(10);
         troleibusas11.vaziuoja1();
 
         const troleibusas12 = new troleibusasNaujas();
         troleibusas12.ilipa1(80);
-        troleibusas12.islipa1(40);
+        troleibusas12.islipa1(90);
         troleibusas12.vaziuoja1();
 
-        console.log(troleibusasNaujas.visiKeleiviai);
         troleibusas12.keleiviuSkaiciusVisuoseTroleibusuose();
-        
+
         //Sukurti klasę PirkiniuKrepselis.
         //Konstruktoriuje sukurti savybę turinys,
         //kuri yra Map tipo objektas. Sukurti tris
@@ -307,7 +310,6 @@
         k23.pridetiDaugAkmenu(40);
         k23.kiekPririnktaAkmenu();
 
-        console.log(kibiras2.visiAkmenys);
         k23.akmenuSkaiciusVisuoseKibiruose();
 
         //Sukurti klasę Stikline. Sukurti savybes turis
