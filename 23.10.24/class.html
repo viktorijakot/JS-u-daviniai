@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //Sukurti klasę Kibiras1.
+        //Konstruktoriuje sukurti savybę akmenuKiekis
+        //kuri lygi 0. Parašyti šiai klasei metodus,
+        //pridedančius akmenis: prideti1Akmeni()
+        //pridetiDaugAkmenu(kiekis) ir metodą išvedantį
+        //akmenų kiekį į konsolę- kiekPririnktaAkmenu().
+        //Sukurti vieną kibiro objektą ir pademonstruoti
+        //akmenų rinkimą į kibirą ir rezultatų išvedimą.
+
+        class kibiras1 {
+            constructor() {
+                this.akmenuKiekis = 0;
+            }
+            prideti1Akmeni() {
+                this.akmenuKiekis++;
+            }
+            pridetiDaugAkmenu(kiekis) {
+                this.akmenuKiekis += kiekis;
+            }
+            kiekPririnktaAkmenu() {
+                console.log(`Akmenų kiekis kibire: ${this.akmenuKiekis}`);
+            }
+        }
+        const k1 = new kibiras1();
+        k1.prideti1Akmeni();
+        k1.pridetiDaugAkmenu(10);
+        k1.kiekPririnktaAkmenu();
+
+        //Sukurti klasę Pinigine.
+        //Konstruktoriuje sukurti dvi savybes
+        //popieriniaiPinigai ir metaliniaiPinigai.
+        //Parašyti metodą ideti(kiekis), kuris prideda
+        //pinigus į piniginę. Jeigu kiekis nedidesnis už
+        //2, tai prideda prie metaliniaiPinigai, jeigu
+        //kitaip- prie popieriniaiPinigai. Parašykite
+        //metodą skaiciuoti(), kuris suskaičiuotų ir
+        //išvestų į konsolę popieriniaiPinigai ir
+        //metaliniaiPinigai sumą. Sukurti klasės objektą
+        //ir pademonstruoti veikimą. Nesvarbu kokios
+        //popierinės kupiūros ir metalinės monetos
+        //egzistuoja realiame pasaulyje.
+
+        class pinigine {
+            constructor() {
+                this.popieriniaiPinigai = 0;
+                this.metaliniaiPinigai = 0;
+            }
+            ideti(kiekis) {
+                if (kiekis <= 2) {
+                    this.metaliniaiPinigai += kiekis;
+                } else this.popieriniaiPinigai += kiekis;
+            }
+            skaiciuoti() {
+                console.log(
+                    `Suma: ${this.metaliniaiPinigai + this.popieriniaiPinigai}`
+                );
+            }
+        }
+
+        const pinigine1 = new pinigine();
+
+        pinigine1.ideti(2);
+        pinigine1.ideti(10);
+        pinigine1.ideti(1);
+        pinigine1.ideti(3);
+
+        pinigine1.skaiciuoti();
+        console.log(pinigine1);
+
+        //Sukurti klasę Troleibusas. Konstruktoriuje
+        //sukurti savybę keleiviuSkaicius kuri yra
+        //lygi 0. Parašyti du metodus:
+        //ilipa(keleiviuSkaicius) ir
+        //islipa(keleiviuSkaicius). O taip pat
+        //parašyti metoda vaziuoja(), kuris į konsolę
+        //išvestų troleibusu važiuojančių keleivių
+        //skaičių. Atkreipkite dėmesį, kad troleibusu
+        //važiuoti neigiamas keleivių skaičius negali.
+
+        class troleibusas {
+            constructor() {
+                this.keleiviuSkaicius = 0;
+            }
+            ilipa(keleiviuSkaicius) {
+                this.keleiviuSkaicius += keleiviuSkaicius;
+            }
+            islipa(keleiviuSkaicius) {
+                if (keleiviuSkaicius < this.keleiviuSkaicius) {
+                    this.keleiviuSkaicius -= keleiviuSkaicius;
+                } else this.keleiviuSkaicius = 0;
+            }
+            vaziuoja() {
+                console.log(`Keleivių skaičius: ${this.keleiviuSkaicius}`);
+            }
+        }
+
+        const troleibusas1 = new troleibusas();
+        troleibusas1.ilipa(70);
+        troleibusas1.islipa(60);
+        troleibusas1.islipa(1);
+        troleibusas1.vaziuoja();
+
+        //(STATIC) Sukurti metodą
+        //keleiviuSkaiciusVisuoseTroleibusuose(), kuris
+        //rodytų bendrą keleivių skaičių visuose Troleibusas
+        //objektuose. Bendram kelevių skaičiaus skaičiavimui
+        //sukurkite statinį metodą
+        //bendrasKeleiviuSkaicius(keleiviuSkaicius), kuris
+        //pridėtų arba atimtų keleivius iš statinės savybės
+        //visiKeleiviai (kurioje yra įrašytas bendras
+        //keleivių skaičius). Taip pat atitinkamai
+        //modifikuokite metodus ilipa(keleiviuSkaicius) ir
+        //islipa(keleiviuSkaicius).
+
+        class troleibusasNaujas {
+            constructor() {
+                this.keleiviuSkaicius = 0;
+            }
+            static visiKeleiviai = 0;
+            ilipa1(keleiviuSkaicius) {
+                this.keleiviuSkaicius += keleiviuSkaicius;
+                troleibusasNaujas.visiKeleiviai += keleiviuSkaicius;
+            }
+            islipa1(keleiviuSkaicius) {
+                troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
+                if (keleiviuSkaicius < this.keleiviuSkaicius) {
+                    this.keleiviuSkaicius -= keleiviuSkaicius;
+                } else this.keleiviuSkaicius = 0;
+            }
+            vaziuoja1() {
+                console.log(`Keleivių skaičius: ${this.keleiviuSkaicius}`);
+            }
+            keleiviuSkaiciusVisuoseTroleibusuose() {
+                if(troleibusasNaujas.visiKeleiviai > 0){
+                console.log(
+                    `Visų troleibusų keleivių skaičius: ${troleibusasNaujas.visiKeleiviai}`
+                );
+                } else console.log(
+                    `Visų troleibusų keleivių skaičius: 0`
+                );
+                
+            }
+        }
+
+        const troleibusas11 = new troleibusasNaujas();
+        troleibusas11.ilipa1(10);
+        troleibusas11.ilipa1(30);
+        troleibusas11.islipa1(50);
+        troleibusas11.vaziuoja1();
+
+        const troleibusas12 = new troleibusasNaujas();
+        troleibusas12.ilipa1(80);
+        troleibusas12.islipa1(40);
+        troleibusas12.vaziuoja1();
+
+        console.log(troleibusasNaujas.visiKeleiviai);
+        troleibusas12.keleiviuSkaiciusVisuoseTroleibusuose();
+        
+        //Sukurti klasę PirkiniuKrepselis.
+        //Konstruktoriuje sukurti savybę turinys,
+        //kuri yra Map tipo objektas. Sukurti tris
+        //metodus: idetiSureli(kiekis),
+        //idetiPieno(kiekis), idetiDuonos(kiekis).
+        //Parašyti metodą krepselioTurinys(), kuris į
+        //konsolę išvestų produktų sąrašą
+        //(turinys kintamąjį). Pridėti tuos pačius
+        //produktus galima po kelis kartus, tokiu atveju
+        //produktų kiekis turėtų sumuotis.
+
+        class pirkiniuKrepselis {
+            constructor() {
+                this.turinys = new Map();
+                this.kiekis1 = 0;
+                this.kiekis2 = 0;
+                this.kiekis3 = 0;
+            }
+            idetiSureli(kiekis) {
+                this.kiekis1 += kiekis;
+                this.turinys.set("surelis", this.kiekis1);
+            }
+            idetiPieno(kiekis) {
+                this.kiekis2 += kiekis;
+                this.turinys.set("pienas", this.kiekis2);
+            }
+            idetiDuonos(kiekis) {
+                this.kiekis3 += kiekis;
+                this.turinys.set("Duona", this.kiekis3);
+            }
+            krepselioTurinys() {
+                console.log(this.turinys);
+            }
+        }
+
+        const pirkiniai = new pirkiniuKrepselis();
+        pirkiniai.idetiDuonos(1);
+        pirkiniai.idetiDuonos(2);
+        pirkiniai.idetiPieno(1);
+        pirkiniai.idetiPieno(5);
+        pirkiniai.idetiSureli(10);
+        pirkiniai.idetiSureli(1);
+        pirkiniai.krepselioTurinys();
+
+        //Patobulinti 2 uždavinio piniginę taip,
+        //kad būtų galima skaičiuoti kiek piniginėje yra
+        //monetų ir kiek banknotų. Parašyti metodą monetos(),
+        // kuris skaičiuotų kiek yra piniginėje monetų ir
+        //metoda banknotai() - popierinių pinigų
+        //skaičiavimui. Kiekvieną atskirą dėjimą
+        //(ideti(kiekis) metodo kvietimą) laikykite vienu
+        //banknotu ar viena moneta.
+
+        class pinigine2 {
+            constructor() {
+                this.popieriniaiPinigai = 0;
+                this.metaliniaiPinigai = 0;
+                this.sumMonetos = 0;
+                this.sumPop = 0;
+            }
+            ideti(kiekis) {
+                if (kiekis <= 2) {
+                    this.metaliniaiPinigai += kiekis;
+                    this.sumMonetos++;
+                }
+                if (kiekis > 2) {
+                    this.popieriniaiPinigai += kiekis;
+                    this.sumPop++;
+                }
+            }
+            monetos() {
+                return console.log(`Monetų sk: ${this.sumMonetos}`);
+            }
+            banknotai() {
+                return console.log(`Banknotų sk: ${this.sumPop}`);
+            }
+            skaiciuoti() {
+                console.log(
+                    `Suma: ${this.metaliniaiPinigai + this.popieriniaiPinigai}`
+                );
+            }
+        }
+
+        const pinigineNauja = new pinigine2();
+        pinigineNauja.ideti(2);
+        pinigineNauja.ideti(10);
+        pinigineNauja.ideti(4);
+        pinigineNauja.ideti(15);
+        pinigineNauja.ideti(1);
+        pinigineNauja.monetos();
+        pinigineNauja.banknotai();
+
+        //(STATIC) Klasėje Kibiras1 (pirmas uždavinys)
+        //sukurti metodą akmenuSkaiciusVisuoseKibiruose(),
+        // kuris rodytų bendrą visuose kibiruose pririnktų
+        //akmenų kiekį (visuose sukurtuose Kibiras
+        //objektuose). Skaičiuoti akmenim, kurie buvo
+        //surinkti visuose objektuose, naudokite statinę
+        //savybę visiAkmenys (kurioje yra įrašytas ir
+        //saugomas bendras akmenų skaičius). Taip pat
+        //atitinkamai modifikuokite metodus
+        //prideti1Akmeni(),  pridetiDaugAkmenu(kiekis).
+
+        class kibiras2 {
+            constructor() {
+                this.akmenuKiekis = 0;
+            }
+            static visiAkmenys = 0;
+            prideti1Akmeni() {
+                this.akmenuKiekis++;
+                kibiras2.visiAkmenys++;
+            }
+            pridetiDaugAkmenu(kiekis) {
+                this.akmenuKiekis += kiekis;
+                kibiras2.visiAkmenys += kiekis;
+            }
+            kiekPririnktaAkmenu() {
+                console.log(`Akmenų kiekis kibire: ${this.akmenuKiekis}`);
+            }
+            akmenuSkaiciusVisuoseKibiruose() {
+                console.log(
+                    `Bendras visų kibirų akmenų kiekis: ${kibiras2.visiAkmenys}`
+                );
+            }
+        }
+        const k21 = new kibiras2();
+        k21.prideti1Akmeni();
+        k21.pridetiDaugAkmenu(10);
+        k21.kiekPririnktaAkmenu();
+
+        const k22 = new kibiras2();
+        k22.prideti1Akmeni();
+        k22.pridetiDaugAkmenu(20);
+        k22.kiekPririnktaAkmenu();
+
+        const k23 = new kibiras2();
+        k23.prideti1Akmeni();
+        k23.pridetiDaugAkmenu(40);
+        k23.kiekPririnktaAkmenu();
+
+        console.log(kibiras2.visiAkmenys);
+        k23.akmenuSkaiciusVisuoseKibiruose();
+
+        //Sukurti klasę Stikline. Sukurti savybes turis
+        //ir kiekis. Turis turi būti pasirenkamas
+        //objekto kūrimo metu. Parašyti metodą
+        //ipilti(kiekis), kuris keistų savybę kiekis.
+        //Jeigu stiklinės tūris yra mažesnis nei pilamas
+        //kiekis- kiekis netelpa ir būna lygus tūriui.
+        //Parašyti metodą ispilti(), kuris grąžiną kiekį.
+        //Pilant išpilamas visas kiekis, tas kas netelpa,
+        //nuteka per stalo viršų.  Sukurti metodą
+        //stiklinejeYra(), kuris į konsolę atspausdintų
+        //kiek stiklinėje yra skysčio. Sukurti tris
+        //stiklinės objektus su tūriais: 200, 150, 100.
+        //Didžiausią pripilti pilną ir tada ją ispilti į
+        //mažesnę stiklinę, o mažesnę į dar mažesnę.
+
+        class stikline {
+            constructor(a) {
+                this.turis = a;
+                this.kiekis = 0;
+                this.likutis = 0;
+            }
+            ipilti(kiekis) {
+                this.kiekis += kiekis;
+                if (this.kiekis > this.turis) {
+                    this.likutis += this.kiekis - this.turis;
+                }
+                return (this.kiekis = this.kiekis - this.likutis);
+            }
+            ispilti() {
+                console.log(`Gražintas kiekis: ${this.likutis}`);
+            }
+            stiklinejeYra() {
+                console.log(`Stiklinėje yra: ${this.kiekis}`);
+            }
+        }
+        const stikline1 = new stikline(200);
+        stikline1.ipilti(450);
+        stikline1.ispilti();
+        stikline1.stiklinejeYra();
+
+        const stikline2 = new stikline(150);
+        stikline2.ipilti(200);
+        stikline2.ispilti();
+        stikline2.stiklinejeYra();
+
+        const stikline3 = new stikline(100);
+        stikline3.ipilti(150);
+        stikline3.ispilti();
+        stikline3.stiklinejeYra();
+    </script>
+</body>
+
+</html>
