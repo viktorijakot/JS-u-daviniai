@@ -128,6 +128,9 @@
                 this.keleiviuSkaicius = 0;
             }
             static visiKeleiviai = 0;
+            // static bendrasKeleiviuSkaicius(keleiviuSkaicius) {
+            //     troleibusasNaujas.visiKeleiviai += keleiviuSkaicius
+            // }
             ilipa1(keleiviuSkaicius) {
                 this.keleiviuSkaicius += keleiviuSkaicius;
                 troleibusasNaujas.visiKeleiviai += keleiviuSkaicius;
@@ -137,7 +140,7 @@
                     this.keleiviuSkaicius -= keleiviuSkaicius;
                     troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
                 } else this.keleiviuSkaicius = 0;
-                if(keleiviuSkaicius > this.keleiviuSkaicius){
+                if (keleiviuSkaicius > this.keleiviuSkaicius) {
                     troleibusasNaujas.visiKeleiviai -= keleiviuSkaicius;
                 }
 
@@ -168,6 +171,7 @@
         troleibusas12.islipa1(90);
         troleibusas12.vaziuoja1();
 
+        // troleibusasNaujas.bendrasKeleiviuSkaicius()
         troleibusas12.keleiviuSkaiciusVisuoseTroleibusuose();
 
         //Sukurti klasę PirkiniuKrepselis.
