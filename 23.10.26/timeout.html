@@ -39,7 +39,7 @@
     }
 
     .buttons button:hover {
-        background: rgb(97, 97, 97);
+      background: rgb(97, 97, 97);
     }
   </style>
   <body>
@@ -95,9 +95,13 @@
       };
 
       const setReset = () => {
+        minute = 9
+        second = 60
+        document.querySelector(".count").textContent = `10 m 00 s`;
         clearInterval(intervalMinute);
         clearInterval(intervalSecond);
-document.querySelector(".count").textContent = `10 m 00 s`;
+        intervalMinute = null;
+        intervalSecond = null;
       };
 
       //   if (e.target.classList.contains("start")) {
