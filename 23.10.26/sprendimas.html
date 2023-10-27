@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+      //Sugeneruokite atsitiktinio (nuo 10 iki 20)
+      //ilgio masyvą, kurio visi, išskyrus paskutinį,
+      //elementai yra atsitiktiniai skaičiai nuo 0 iki 10,
+      //o paskutinis masyvas, kuris generuojamas pagal
+      //tokią pat salygą kaip ir pirmasis masyvas.
+      //Viską pakartokite atsitiktinį nuo 10 iki 30
+      //kiekį kartų. Paskutinio masyvo paskutinis
+      //elementas yra lygus 0;
+
+      let repeatOnce = true;
+      const arrayLength = rand(10, 20);
+      const resultRepeats = rand(10, 30);
+      const resultArray = [];
+
+      const recursion = () => {
+        const randomCycle = [];
+        for (let a = 0; a < arrayLength; a++) {
+          const atsitiktinas2 = rand(0, 10);
+          if (repeatOnce && a === arrayLength - 1) {
+            repeatOnce = false;
+            randomCycle.push(recursion());
+          } else {
+            randomCycle.push(atsitiktinas2);
+          }
+        }
+
+        return randomCycle;
+      };
+
+      //console.log(recursion())
+
+      for (let i = 0; i < resultRepeats; i++) {
+        const ref = recursion();
+        if (i === resultRepeats - 1) {
+          ref[ref.length - 1] = 0;
+          resultArray.push(ref);
+        } else {
+          resultArray.push(ref);
+          repeatOnce = true;
+        }
+      }
+
+      console.log(resultArray);
+
+			// --- Sum
+
+			function arrSum(arr) {
+				sum = 0;
+				for(let i = 0; i < arr.length; i++){
+					if(typeof arr[i] == 'object'){
+						sum += arrSum(arr[i])
+						console.log(arr[i])
+					} else 
+					sum += arr[i]
+					console.log(arr[i])
+				}
+				return sum
+			}
+
+			console.log(arrSum(resultArray))
+
+      //--- Kitas sprendimas
+
+      const pagrindinisKiekis = rand(10, 30);
+      const masyvas1 = [];
+      for (let a = 0; a < pagrindinisKiekis; a++) {
+        const masyvas = [];
+        const kiekis = rand(10, 20);
+
+        for (let i = 0; i < kiekis; i++) {
+          if (i === kiekis - 1) {
+            //Paskutinis skaicius
+            const kiekis = rand(10, 20);
+            masyvas[i] = [];
+            for (let x = 0; x < kiekis; x++) {
+              if (x === kiekis - 1) {
+                masyvas[i][x] = [];
+                const kiekis = rand(10, 20);
+                for (let y = 0; y < kiekis; y++) {
+                  if (y === kiekis - 1 && a === pagrindinisKiekis - 1) {
+                    masyvas[i][x].push(0);
+                  } else {
+                    masyvas[i][x].push(rand(10, 20));
+                  }
+                }
+              } else {
+                masyvas[i].push(rand(0, 10));
+              }
+            }
+          } else {
+            masyvas.push(rand(0, 10));
+          }
+        }
+        masyvas1.push(masyvas);
+        // console.log(masyvas);
+      }
+      // console.log(masyvas1);
+
+      //Suskaičiuokite septinto uždavinio elementų,
+      //kurie nėra masyvai, sumą. Skaičiuoti reikia
+      //visuose masyvuose ir submasyvuose.
+
+      // const initialValue = 0;
+      // const sumWithInitial = recursion().reduce(
+      //   (accumulator, currentValue) => accumulator + currentValue,
+      //   initialValue
+      // );
+      // console.log(sumWithInitial);
+    </script>
+  </body>
+</html>
