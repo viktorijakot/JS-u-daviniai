@@ -45,7 +45,9 @@ document
 
 //2e
 
-document.querySelectorAll('.new').forEach((el) => el.style.textDecoration = "underline" )
+document
+  .querySelectorAll(".new")
+  .forEach((el) => (el.style.textDecoration = "underline"));
 
 //2f
 
@@ -170,10 +172,11 @@ newAnimals.forEach((el, i) => {
 
 const list = [];
 list.push(
-    document.querySelectorAll("#plesrunai > li"), 
-    document.querySelectorAll("#gyvates > li"), 
-    document.querySelectorAll("#zoliaedziai > li")
-    );
+  document.querySelectorAll("#zirafos > li"),
+  document.querySelectorAll("#plesrunai > li"),
+  document.querySelectorAll("#gyvates > li"),
+  document.querySelectorAll("#zoliaedziai > li")
+);
 
 list.forEach((el) =>
   el.forEach((e, i) => {
@@ -181,51 +184,75 @@ list.forEach((el) =>
       e.addEventListener("click", (b) => {
         b.target.style.fontSize = "130%";
       });
-    } else e.addEventListener('click', (b) => {
-        b.target.parentElement.classList.add("like")
-    })
+    } else
+      e.addEventListener("click", (b) => {
+        b.target.parentElement.classList.add("like");
+      });
   })
 );
 
-//5a 
+//5a
 
-const newText = document.createElement("h2")
-newText.textContent = "Senjorai tik: 1.99 eur"
-newText.classList.add("price-tag")
-newText.style.color = "lightblue"
-console.log(newText)
-document.querySelector(".prices ").appendChild(newText)
+const newText = document.createElement("h2");
+newText.textContent = "Senjorai tik: 1.99 eur";
+newText.classList.add("price-tag");
+newText.style.color = "lightblue";
+console.log(newText);
+document.querySelector(".prices ").appendChild(newText);
 
 //5b
 
 const newText1 = document.createElement("h2");
 newText1.textContent = "Senjorų grupė iki 10: tik 5.99 eur";
-newText1.classList.add("price-tag", "new")
-newText1.style.color = "lightblue"
+newText1.classList.add("price-tag", "new");
+newText1.style.color = "lightblue";
 document.querySelector(".prices ").appendChild(newText1);
 
-newText1.addEventListener('click', () => {
-    newText1.style.color = "green"
-})
+newText1.addEventListener("click", () => {
+  newText1.style.color = "green";
+});
 
 //5c
 
-console.log(list);
-const nepatinka = document.createElement("li")
-const neText = document.createTextNode("NEPATINKA")
-nepatinka.appendChild(neText)
+const nepatinka = document.createElement("li");
+const neText = document.createTextNode("NEPATINKA");
+nepatinka.appendChild(neText);
 
+const gyvates = document.querySelector("#gyvates > li:nth-child(1)");
 
-const gyvates = document.querySelectorAll("#gyvates >li")
-console.log(gyvates)
-gyvates.forEach ((el,i) => {
-    if(i===0)
-        el.appendChild(nepatinka)
-}
-)
+gyvates.appendChild(nepatinka);
 
-nepatinka.addEventListener ('click',() => {
-    gyvates.forEach((e) =>{
-e.parentElement.classList.remove("like")
-    })
-})
+nepatinka.addEventListener("click", () => {
+  gyvates.parentElement.classList.remove("like");
+});
+
+const nepatinka1 = document.createElement("li");
+const neText1 = document.createTextNode("NEPATINKA");
+nepatinka1.appendChild(neText1);
+
+const plesrunai = document.querySelector("#plesrunai > li:nth-child(1)");
+plesrunai.appendChild(nepatinka1);
+
+nepatinka1.addEventListener("click", () => {
+  plesrunai.parentElement.classList.remove("like");
+});
+
+const zirafos = document.querySelector("#zirafos > li:nth-child(1)");
+const nepatinka2 = document.createElement("li");
+const neText2 = document.createTextNode("NEPATINKA");
+nepatinka2.appendChild(neText2);
+
+zirafos.appendChild(nepatinka2);
+nepatinka2.addEventListener("click", () => {
+  zirafos.parentElement.classList.remove("like");
+});
+
+const zoliaedziai = document.querySelector("#zoliaedziai > li:nth-child(1)");
+const nepatinka3 = document.createElement("li");
+const neText3 = document.createTextNode("NEPATINKA");
+nepatinka3.appendChild(neText3);
+
+zoliaedziai.appendChild(nepatinka3);
+nepatinka3.addEventListener("click", () => {
+  zoliaedziai.parentElement.classList.remove("like");
+});
