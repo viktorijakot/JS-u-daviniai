@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //--1
+      //Sukurkite funkciją, kuri patikrina,
+      //ar duotas masyvas turi tam tikrą elementą.
+
+      arr = [20, 7, 8];
+      const checkArr = (arr, b) => {
+        if (arr.filter((el) => el === b) == b) {
+          return console.log("true");
+        } else console.log("false");
+      };
+
+      checkArr(arr, 7);
+      checkArr(arr, 10);
+
+      //--2
+      //Sukurkite funkciją, kuri apskaičiuoja
+      //kvadrato plotą pagal kraštinės ilgį.
+
+      let size = 3;
+
+      const sqArea = (size) => {
+        return size ** 2;
+      };
+
+      console.log(sqArea(size));
+
+      //--3
+      //Sukurkite funkciją, kuri patikrina,
+      //ar duotas skaičius yra teigiamas,
+      //neigiamas ar nulis.
+
+      const checkNumber = (number) => {
+        if (number < 0) {
+          return console.log("Number is negative");
+        } else if (number === 0) {
+          return console.log("Number is zero");
+        } else return console.log("Number is positive");
+      };
+
+      checkNumber(2);
+      checkNumber(-2);
+      checkNumber(0);
+
+      //--4
+      //Sukurkite funkciją, kuri surūšiuoja masyvą
+      //didėjimo arba mažėjimo tvarka.
+
+      arr = [2, 5, 1, 4];
+
+      const sortDecrease = (arr) => {
+        return arr.sort((a, b) => b - a);
+      };
+
+      const sortIncrease = (arr) => {
+        return arr.sort((a, b) => a - b);
+      };
+
+      console.log(sortDecrease(arr));
+      console.log(sortIncrease(arr));
+
+      //--5
+      //Sukurkite funkciją, kuri išfiltruoja masyvą,
+      //palikdama tik nurodytą tipą elementų.
+
+      arr = [2, 2, 5, "string", [3, 4]];
+
+      const filterOfType = (arr, type) => {
+        return arr.filter((el) => typeof el === typeof type);
+      };
+
+      console.log(filterOfType(arr, 0));
+      console.log(filterOfType(arr, ""));
+      console.log(filterOfType(arr, []));
+
+      //--6
+      //Sukurkite mini žaidimą kuriame atėjęs žmogus
+      //galėtų spėti skaičių kurį sugalvojo
+      //kompiuteris. Jei spėtas skaičius per
+      //didelis išmeskite žinutę „Jūsų skaičius
+      //per didelis“. Taip pat jei ir skaičius
+      //per mažas. Atspėjus skaičių turite parašyti
+      //pasveikinimo žinutę ir pradėti žaidimą
+      //iš naujo
+
+      const game = (user) => {
+        const number = 7;
+        console.log(number);
+        if (user > number) {
+          return console.log("Jūsų skaičius per didelis");
+        } else if (user < number) {
+          return console.log("Jūsų skaičius per mažas");
+        } else return console.log("Sveikiname atspėjus skaičių");
+      };
+
+      console.log(game(9));
+    </script>
+  </body>
+</html>
