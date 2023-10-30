@@ -46,7 +46,7 @@
       cursor: pointer;
     }
     button:hover {
-        background-color: rgb(56, 55, 55);
+      background-color: rgb(56, 55, 55);
     }
     .small-box {
       width: 50px;
@@ -96,7 +96,7 @@
       const final = document.querySelector(".final");
 
       let second = 30;
-      let time = 60;
+      let time = 300;
       let userClick = 0;
       let computer = 30;
       let user = "Jūs";
@@ -107,7 +107,6 @@
       box.addEventListener("click", () => {
         userClick++;
         computer -= userClick;
-        
       });
 
       button.addEventListener("click", () => {
@@ -121,40 +120,49 @@
         interval = setInterval(() => {
           second--;
           time--;
+
           let position1 = rand(0, 450);
           let position2 = rand(0, 430);
           let number1 = rand(0, 224);
           let number2 = rand(0, 225);
           let number3 = rand(0, 225);
 
-          if(second === 0){
+          if (second === 0) {
             result.innerHTML += `
             <li>Laimėtojas
                 ${userClick > computer ? user : comp}, surinkta 
                 ${userClick > computer ? userClick : computer} 
                 taškų 
                 </li>`;
-            roundUser += userClick > computer ? 1 : 0;
-            roundComp += userClick < computer ? 1 : 0;
+            if (userClick > computer) {
+              roundUser++;
+            } else if (userClick < computer) {
+              roundComp++;
+            } else if (userClick < computer) {
+              roundUser += 0;
+              roundComp += 0;
+            }
+            console.log(roundComp, roundUser);
             userClick = 0;
             computer = 30;
           }
           if (second === -1) {
             second = 30;
           }
-          if (time === 0) {
+          if (time === -1) {
             clearInterval(interval);
 
             start.style.display = "none";
             button.style.display = "block";
             button.textContent = "Lets play again";
 
+            console.log(roundComp, roundUser);
             if (roundUser > roundComp) {
               final.innerHTML = `<h3>Sveikiname, Jus nugalėjote kompiuterį!</h3>`;
             } else if (roundUser < roundComp) {
               final.innerHTML = `<h3>Šį kartą laimėjo kompiuteris ...</h3>`;
             } else final.innerHTML = `<h3>Lygiosios, bandykite dar kartą.</h3>`;
-            
+
             userClick = 0;
             computer = 30;
             roundUser = 0;
