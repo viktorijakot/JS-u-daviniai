@@ -127,8 +127,7 @@
           let number2 = rand(0, 225);
           let number3 = rand(0, 225);
 
-          if (second === -1) {
-            second = 30;
+          if(second === 0){
             result.innerHTML += `
             <li>Laimėtojas
                 ${userClick > computer ? user : comp}, surinkta 
@@ -139,6 +138,9 @@
             roundComp += userClick < computer ? 1 : 0;
             userClick = 0;
             computer = 30;
+          }
+          if (second === -1) {
+            second = 30;
           }
           if (time === 0) {
             clearInterval(interval);
