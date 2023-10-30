@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      height: 100vh;
+      align-items: center;
+    }
+    .start {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      display: none;
+    }
+
+    .big-box {
+      width: 500px;
+      height: 500px;
+      border: 0.5px solid gray;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    li {
+      list-style: none;
+      border-bottom: 0.5px solid grey;
+      padding-top: 10px;
+    }
+    .text {
+      margin-left: 10px;
+      margin-top: 10px;
+      width: 150px;
+    }
+    button {
+      height: 50px;
+      background-color: black;
+      color: white;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+    button:hover {
+        background-color: rgb(56, 55, 55);
+    }
+    .small-box {
+      width: 50px;
+      height: 50px;
+      background-color: white;
+      cursor: pointer;
+      z-index: 2;
+      margin-left: 10px;
+      border-radius: 20px;
+    }
+    .timer {
+      width: 20px;
+      color: black;
+      z-index: 1;
+      align-self: flex-end;
+      padding-top: 5px;
+      padding-right: 5px;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <button class="buttonStart" onclick="createTimer()">
+        Let's play a game
+      </button>
+      <div class="final"></div>
+      <div class="start">
+        <div class="text">
+          <li>Rezultatas:</li>
+        </div>
+        <div class="big-box">
+          <div class="timer">30</div>
+          <div class="small-box"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      const button = document.querySelector("button");
+      const start = document.querySelector(".start");
+      const box = document.querySelector(".small-box");
+      const result = document.querySelector("li");
+      const final = document.querySelector(".final");
+
+      let second = 30;
+      let time = 60;
+      let userClick = 0;
+      let computer = 30;
+      let user = "Jūs";
+      let comp = "Kompiuteris";
+      let roundUser = 0;
+      let roundComp = 0;
+
+      box.addEventListener("click", () => {
+        userClick++;
+        computer -= userClick;
+        
+      });
+
+      button.addEventListener("click", () => {
+        start.style.display = "flex";
+        button.style.display = "none";
+        final.innerHTML = "";
+        result.innerHTML = "<li>Rezultatas:</li>";
+      });
+
+      const createTimer = () => {
+        interval = setInterval(() => {
+          second--;
+          time--;
+          let position1 = rand(0, 450);
+          let position2 = rand(0, 430);
+          let number1 = rand(0, 224);
+          let number2 = rand(0, 225);
+          let number3 = rand(0, 225);
+
+          if (second === -1) {
+            second = 30;
+            result.innerHTML += `
+            <li>Laimėtojas
+                ${userClick > computer ? user : comp}, surinkta 
+                ${userClick > computer ? userClick : computer} 
+                taškų 
+                </li>`;
+            roundUser += userClick > computer ? 1 : 0;
+            roundComp += userClick < computer ? 1 : 0;
+            userClick = 0;
+            computer = 30;
+          }
+          if (time === 0) {
+            clearInterval(interval);
+
+            start.style.display = "none";
+            button.style.display = "block";
+            button.textContent = "Lets play again";
+
+            if (roundUser > roundComp) {
+              final.innerHTML = `<h3>Sveikiname, Jus nugalėjote kompiuterį!</h3>`;
+            } else if (roundUser < roundComp) {
+              final.innerHTML = `<h3>Šį kartą laimėjo kompiuteris ...</h3>`;
+            } else final.innerHTML = `<h3>Lygiosios, bandykite dar kartą.</h3>`;
+            
+            userClick = 0;
+            computer = 30;
+            roundUser = 0;
+            roundComp = 0;
+            second = 30;
+            time = 60;
+          }
+
+          box.style.marginLeft = `${position1}px`;
+          box.style.marginTop = `${position2}px`;
+          box.style.backgroundColor = `rgb(${number1}, ${number2}, ${number3})`;
+          document.querySelector(".timer").textContent = second;
+        }, 1000);
+      };
+    </script>
+  </body>
+</html>
