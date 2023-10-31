@@ -138,7 +138,7 @@
               roundUser++;
             } else if (userClick < computer) {
               roundComp++;
-            } else if (userClick < computer) {
+            } else if (userClick === computer) {
               roundUser += 0;
               roundComp += 0;
             }
@@ -168,13 +168,14 @@
             roundUser = 0;
             roundComp = 0;
             second = 30;
-            time = 60;
+            time = 300;
           }
 
           box.style.marginLeft = `${position1}px`;
           box.style.marginTop = `${position2}px`;
           box.style.backgroundColor = `rgb(${number1}, ${number2}, ${number3})`;
           document.querySelector(".timer").textContent = second;
+          
         }, 1000);
       };
     </script>
