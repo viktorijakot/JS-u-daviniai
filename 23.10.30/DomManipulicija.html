@@ -10,6 +10,7 @@
       background-color: rgb(170, 170, 145);
     }
   </style>
+
   <body>
     <script>
       const object = {
@@ -413,7 +414,8 @@
 
       const body = document.querySelector("body");
       for (i = 0; i < object.products.length; i++) {
-        body.innerHTML += `<div style="display:flex; justify-content:space-around;  border-bottom: 0.5px solid grey;  padding-top:20px; padding-bottom:20px; width:100%">
+        body.innerHTML += `
+    <div style="display:flex; justify-content:space-around;  border-bottom: 0.5px solid grey;  padding-top:20px; padding-bottom:20px; width:100%">
     <div style="display:flex; flex-direction: column; width:20%">
     <div style="align-self:flex-end; background:red; color:white; padding:5px; margin-right:20px">-${
       object.products[i].discountPercentage
@@ -423,13 +425,17 @@
     }" style=" width: 70%; margin-top:10px"/>
     </div>
     <div style="padding-left:20px; padding-right:20px; width:50%">
-        <h5 style="margin-top:0; color:#74aae3; font-size:20px; margin-bottom:10px">${object.products[i].title}</h5>
+        <h5 style="margin-top:0; color:#74aae3; font-size:20px; margin-bottom:10px">${
+          object.products[i].title
+        }</h5>
         <div>
             <p 
         style="display: inline-block;
         margin: 0;
         font-size:20px;
-        background: linear-gradient(to right, #fcb800 ${object.products[i].rating * 20}%, #dddddd ${100-(object.products[i].rating * 20)}%);
+        background: linear-gradient(to right, #fcb800 ${
+          object.products[i].rating * 20
+        }%, #dddddd ${100 - object.products[i].rating * 20}%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;"

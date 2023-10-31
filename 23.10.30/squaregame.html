@@ -77,7 +77,7 @@
           <li>Rezultatas:</li>
         </div>
         <div class="big-box">
-          <div class="timer">30</div>
+          <div class="timer">10</div>
           <div class="small-box"></div>
         </div>
       </div>
@@ -95,10 +95,10 @@
       const result = document.querySelector("li");
       const final = document.querySelector(".final");
 
-      let second = 30;
-      let time = 300;
+      let second = 10;
+      let time = 20;
       let userClick = 0;
-      let computer = 30;
+      let computer = 10;
       let user = "Jūs";
       let comp = "Kompiuteris";
       let roundUser = 0;
@@ -144,10 +144,10 @@
             }
             console.log(roundComp, roundUser);
             userClick = 0;
-            computer = 30;
+            computer = 10;
           }
           if (second === -1) {
-            second = 30;
+            second = 10;
           }
           if (time === -1) {
             clearInterval(interval);
@@ -164,18 +164,18 @@
             } else final.innerHTML = `<h3>Lygiosios, bandykite dar kartą.</h3>`;
 
             userClick = 0;
-            computer = 30;
+            computer = 10;
             roundUser = 0;
             roundComp = 0;
-            second = 30;
-            time = 300;
+            second = 10;
+            time = 20;
           }
 
           box.style.marginLeft = `${position1}px`;
           box.style.marginTop = `${position2}px`;
           box.style.backgroundColor = `rgb(${number1}, ${number2}, ${number3})`;
           document.querySelector(".timer").textContent = second;
-          
+
         }, 1000);
       };
     </script>
