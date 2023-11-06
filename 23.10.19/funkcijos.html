@@ -114,7 +114,7 @@
       let test = [20, 30, 40];
       console.log(test.filter((index) => index !== test.slice(-1)));
       console.log(test.slice(0, -1));
-      
+
       const differentArrays = (arrayLenght, repeat) => {
         difarray2 = [];
         array = [];
@@ -197,44 +197,55 @@
       //vidurkį ir jeigu mažesnis nei 70 viską
       //kartokite.
 
-      array = [];
-      for (i = 0; i < 10; i++) {
-        array[i] = [];
-        for (y = 0; y < 10; y++) {
-          array[i][y] = rand(1, 100);
+      const fun = () => {
+        array = [];
+        for (i = 0; i < 10; i++) {
+          array[i] = [];
+          for (y = 0; y < 10; y++) {
+            array[i][y] = rand(1, 100);
+          }
         }
-      }
 
-      let arr = [];
-      for (i = 0; i < array.length; i++) {
-        for (y = 0; y < array[i].length; y++) {
-          arr.push(array[i][y]);
+        let arr = [];
+        for (i = 0; i < array.length; i++) {
+          for (y = 0; y < array[i].length; y++) {
+            arr.push(array[i][y]);
+          }
         }
-      }
 
-      let primeArrOne = arr.filter((item) => integer(item) === 0 && item !== 1);
+        let primeArrOne = arr.filter(
+          (item) => integer(item) === 0 && item !== 1
+        );
 
-      let primeSum = 0;
-      let primeAve = 0;
-      for (i = 0; i < primeArrOne.length; i++) {
-        primeSum += primeArrOne[i];
-        primeAve = primeSum / primeArrOne.length;
-      }
+        let primeSum = 0;
+        let primeAve = 0;
+        for (i = 0; i < primeArrOne.length; i++) {
+          primeSum += primeArrOne[i];
+          primeAve = primeSum / primeArrOne.length;
+        }
 
-      let indexMin = arr.indexOf(Math.min(...arr));
+        let indexMin = arr.indexOf(Math.min(...arr));
+        do {
+          arr[indexMin] = arr[indexMin] + 3;
+        } while (primeAve >= 70)
+        return console.log(array, arr, primeAve, indexMin, Math.min(...arr));
+      };
 
+      fun();
       // for(i = 0; i < arr.length; i++){
       //     if(primeAve < 70){
       //       arr[arr.indexOf(Math.min(...arr))] + 3
       //     }
       //      break
       // }
-      console.log(array);
-      console.log(arr);
-      console.log(primeArrOne);
-      console.log(primeSum);
-      console.log(primeAve);
-      console.log(arr.map((item) => integer(item)));
+
+      // console.log(array);
+      // console.log(arr);
+      // console.log(primeArrOne);
+      // console.log(primeSum);
+      // console.log(primeAve);
+      // console.log(indexMin);
+      // console.log(Math.min(...arr));
 
       // let array1 = [];
       // let array2 = [];

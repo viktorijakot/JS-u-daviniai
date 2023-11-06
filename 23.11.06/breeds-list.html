@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+    .container {
+      align-content: center;
+      text-align: center;
+    }
+    img {
+      margin-top: 20px;
+    }
+    select,
+    button {
+      text-align: center;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>BREEDS LIST</h1>
+      <select id="breeds"></select>
+      <button onclick="find()">Search</button>
+      <div class="img"></div>
+    </div>
+    <script>
+      function find() {
+        let select = document.querySelector("#breeds");
+        console.log(select);
+
+        let valueBreed =
+          select.options[select.selectedIndex].value.toLowerCase();
+
+        valueBreed = valueBreed.split(" ");
+
+        let first = valueBreed[1] + "/";
+        let second = valueBreed[0];
+
+        fetch(`https://dog.ceo/api/breed/${second}/images/random`)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp.message);
+            document.querySelector(
+              ".img"
+            ).innerHTML = `<img src="${resp.message}"/>`;
+          })
+          .catch((resp) => {
+            document.querySelector(".img").innerHTML = `<p>Image not found</p>`;
+          });
+
+        fetch(`https://dog.ceo/api/breed/${first}${second}/images/random`)
+          .then((resp) => resp.json())
+          .then((resp) => {
+            console.log(resp.message);
+            document.querySelector(
+              ".img"
+            ).innerHTML = `<img src="${resp.message}"/>`;
+          })
+          .catch((resp) => {
+            console.log("Image not found");
+          });
+      };
+
+      fetch(`https://dog.ceo/api/breeds/list/all`)
+        .then((resp1) => resp1.json())
+        .then((resp1) => {
+          let breeds = [];
+
+          fetch(`https://dog.ceo/api/breeds/list`)
+            .then((resp) => resp.json())
+            .then((resp) => {
+              console.log(resp.message);
+              breeds = resp.message.map((a) => breeds.push(a));
+
+              resp.message.map((a) => {
+                let test = [];
+                console.log(resp1.message[a].map((b) => b)[0]);
+
+                for (i = 0; i < resp1.message[a].map((b) => b).length; i++) {
+                  document.querySelector(
+                    "select"
+                  ).innerHTML += `<option value="${
+                    resp1.message[a].map(
+                      (b) => b[0].toUpperCase() + b.slice(1)
+                    )[i]
+                  } ${a[0].toUpperCase() + a.slice(1)} 
+                          ">${
+                            resp1.message[a].map(
+                              (b) => b[0].toUpperCase() + b.slice(1)
+                            )[i]
+                          } ${a[0].toUpperCase() + a.slice(1)} </option>`;
+                }
+                if (
+                  resp1.message[a].map((b) => b[0].toUpperCase() + b.slice(1))[
+                    i
+                  ] === undefined
+                ) {
+                  document.querySelector(
+                    "select"
+                  ).innerHTML += `<option value="${
+                    a[0].toUpperCase() + a.slice(1)
+                  } 
+                          ">${a[0].toUpperCase() + a.slice(1)} </option>`;
+                }
+              });
+
+              console.log(resp1.message.australian);
+            });
+        });
+    </script>
+  </body>
+</html>

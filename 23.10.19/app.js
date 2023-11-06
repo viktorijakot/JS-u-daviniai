@@ -217,10 +217,11 @@ newText1.addEventListener("click", () => {
 const nepatinka = document.createElement("li");
 const neText = document.createTextNode("NEPATINKA");
 nepatinka.appendChild(neText);
+nepatinka.classList.add("like-button")
 
 const gyvates = document.querySelector("#gyvates > li:nth-child(1)");
 
-gyvates.appendChild(nepatinka);
+gyvates.after(nepatinka);
 
 nepatinka.addEventListener("click", () => {
   gyvates.parentElement.classList.remove("like");
@@ -229,9 +230,10 @@ nepatinka.addEventListener("click", () => {
 const nepatinka1 = document.createElement("li");
 const neText1 = document.createTextNode("NEPATINKA");
 nepatinka1.appendChild(neText1);
+nepatinka1.classList.add("like-button")
 
 const plesrunai = document.querySelector("#plesrunai > li:nth-child(1)");
-plesrunai.appendChild(nepatinka1);
+plesrunai.after(nepatinka1);
 
 nepatinka1.addEventListener("click", () => {
   plesrunai.parentElement.classList.remove("like");
@@ -241,8 +243,9 @@ const zirafos = document.querySelector("#zirafos > li:nth-child(1)");
 const nepatinka2 = document.createElement("li");
 const neText2 = document.createTextNode("NEPATINKA");
 nepatinka2.appendChild(neText2);
+nepatinka2.classList.add("like-button")
 
-zirafos.appendChild(nepatinka2);
+zirafos.after(nepatinka2);
 nepatinka2.addEventListener("click", () => {
   zirafos.parentElement.classList.remove("like");
 });
@@ -251,8 +254,30 @@ const zoliaedziai = document.querySelector("#zoliaedziai > li:nth-child(1)");
 const nepatinka3 = document.createElement("li");
 const neText3 = document.createTextNode("NEPATINKA");
 nepatinka3.appendChild(neText3);
+nepatinka3.classList.add("like-button")
 
-zoliaedziai.appendChild(nepatinka3);
+zoliaedziai.after(nepatinka3);
 nepatinka3.addEventListener("click", () => {
   zoliaedziai.parentElement.classList.remove("like");
 });
+
+//5d
+
+ const but1 = document.createElement("fieldset")
+ but1.innerHTML = `<legend>HEADER 3</legend>
+ <button id="h1-underline">Pabraukti H1 tagą</button>
+ <button id="h1-underline-back">Nepabraukti H1 tagą</button>`
+
+ const fieldset = document.querySelectorAll('fieldset')
+
+fieldset[1].after(but1)
+
+const butUnderline = document.querySelector('#h1-underline')
+
+butUnderline.addEventListener('click', () => {
+    document.querySelector('h1').style.textDecoration = 'underline'
+})
+
+document.querySelector('#h1-underline-back').addEventListener('click', () => {
+    document.querySelector('h1').style.textDecoration = 'none'
+})
