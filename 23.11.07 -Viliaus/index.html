@@ -165,7 +165,7 @@
               )
               .join("");
           });
-          window.location.hash = 'filterGlass-' + e.target.innerText.replace(" ", "_")
+          window.location.hash = 'filterGlass-' + e.target.innerText.replaceAll(" ", "_")
       }
 
       function filterCat(e) {
@@ -194,7 +194,7 @@
               )
               .join("");
           });
-          window.location.hash = 'filterCategory-' + e.target.innerText.replace(" ", "_")
+          window.location.hash = 'filterCategory-' + e.target.innerText.replaceAll(" ", "_")
       }
 
       function filterAlc(e) {
@@ -219,14 +219,14 @@
               )
               .join("");
           });
-          window.location.hash = 'filter-' + e.target.innerText.replace(" ", "_")
+          window.location.hash = 'filter-' + e.target.innerText.replaceAll(" ", "_")
         }
 
       function ingri(e) {
         const ingredients = e.target.innerText;
         fetch(
           "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" +
-            ingredients.replace(" ", "_")
+            ingredients.replaceAll(" ", "_")
         )
           .then((resp) => resp.json())
           .then((resp) => {
@@ -247,7 +247,7 @@
               )
               .join("");
           });
-          window.location.hash = 'ingredients-' + e.target.innerText.replace(" ", "_")
+          window.location.hash = 'ingredients-' + e.target.innerText.replaceAll(" ", "_")
       }
 
       const abc = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -357,7 +357,7 @@ function router(){
                     <div class="cocktail col-4 mb-3" onclick="showCocktail(${drink.idDrink})">
                         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
                         <h3>${drink.strDrink}</h3>
-                        <p>${hash[1].replace("_", " ")}</p>
+                        <p>${hash[1].replaceAll("_", " ")}</p>
                     </div>
                 `
               )
@@ -406,7 +406,7 @@ function router(){
                     <div class="cocktail col-4 mb-3" onclick="showCocktail(${drink.idDrink})">
                         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
                         <h3>${drink.strDrink}</h3>
-                        <p>${hash[1].replace("_", " ")}</p>
+                        <p>${hash[1].replaceAll("_", " ")}</p>
                     </div>
                 `
               )
@@ -428,7 +428,7 @@ function router(){
                     <div class="cocktail col-4 mb-3" onclick="showCocktail(${drink.idDrink})">
                         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
                         <h3>${drink.strDrink}</h3>
-                        <p>${hash[1].replace("_", " ")}</p>
+                        <p>${hash[1].replaceAll("_", " ")}</p>
                     </div>
                 `
               )
@@ -453,7 +453,7 @@ function router(){
                     <div class="cocktail col-4 mb-3" onclick="showCocktail(${drink.idDrink})">
                         <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
                         <h3>${drink.strDrink}</h3>
-                        <p>${hash[1].replace("_", " ")}</p>
+                        <p>${hash[1].replaceAll("_", " ")}</p>
                     </div>
                 `
               )
