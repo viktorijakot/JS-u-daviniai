@@ -313,7 +313,10 @@
           });
       }
 
-      document
+
+      if (localStorage.getItem("localPage")) {
+        document.body.innerHTML = JSON.parse(localStorage.getItem("localPage"));
+        document
           .querySelector(".randomCoctail")
           .addEventListener("click", () => {
             fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
@@ -324,9 +327,7 @@
                 showCocktail(drink.idDrink);
               });
           });
-
-      if (localStorage.getItem("localPage")) {
-        document.body.innerHTML = JSON.parse(localStorage.getItem("localPage"));
+      } else {
         document
           .querySelector(".randomCoctail")
           .addEventListener("click", () => {
