@@ -44,9 +44,13 @@
 
         let first = valueBreed[1] + "/";
         let second = valueBreed[0];
-        
 
-        fetch(`https://dog.ceo/api/breed/${second}/images/random`)
+        const finalBreed = valueBreed[1].length !== 1 ? valueBreed[1] + "/" + valueBreed[0] : valueBreed[0];
+        //console.log(first, second);
+        // if(valueBreed[1] === ' ')
+        console.log(valueBreed[1].length);
+
+        fetch(`https://dog.ceo/api/breed/${finalBreed}/images/random`)
           .then((resp) => resp.json())
           .then((resp) => {
             console.log(resp.message);
@@ -58,17 +62,17 @@
             document.querySelector(".img").innerHTML = `<p>Image not found</p>`;
           });
 
-        fetch(`https://dog.ceo/api/breed/${first}${second}/images/random`)
-          .then((resp) => resp.json())
-          .then((resp) => {
-            console.log(resp.message);
-            document.querySelector(
-              ".img"
-            ).innerHTML = `<img src="${resp.message}"/>`;
-          })
-          .catch((resp) => {
-            console.log("Image not found");
-          });
+        // fetch(`https://dog.ceo/api/breed/${first}${second}/images/random`)
+        //   .then((resp) => resp.json())
+        //   .then((resp) => {
+        //     console.log(resp.message);
+        //     document.querySelector(
+        //       ".img"
+        //     ).innerHTML = `<img src="${resp.message}"/>`;
+        //   })
+        //   .catch((resp) => {
+        //     console.log("Image not found");
+        //   });
       };
 
 
