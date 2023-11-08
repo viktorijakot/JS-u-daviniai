@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -63,8 +63,7 @@
         fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + val)
           .then((resp) => resp.json())
           .then((resp) => {
-            if (!resp.drinks)
-            return document.querySelector('.result').innerHTML = `<p class="alert alert-danger " style=" text-align:center" >Coctail not found</p>`;
+            if (!resp.drinks) return;
 
             document.querySelector(".result").innerHTML = resp.drinks
               .map(
@@ -86,8 +85,11 @@
                 `
               )
               .join("");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
-          window.location.hash = 'search-' + val
       }
 
       function showCocktail(id) {
@@ -139,8 +141,12 @@
                         <button class="btn btn-primary" onclick="searchCocktails(event)">Back to cocktail list</button>
                     </div>
                 `;
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
-          window.location.hash = 'single-' + id
       }
       function glass(e) {
         const glass = e.target.innerText;
@@ -164,6 +170,11 @@
                 `
               )
               .join("");
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
       }
 
@@ -192,8 +203,12 @@
                 `
               )
               .join("");
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
-
       }
 
       function filterAlc(e) {
@@ -217,8 +232,12 @@
                 `
               )
               .join("");
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
-          window.location.hash = 'filter-' + alco
       }
 
       function ingri(e) {
@@ -245,6 +264,11 @@
                 `
               )
               .join("");
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
       }
 
@@ -281,9 +305,17 @@
                 `
               )
               .join("");
+            window.localStorage.removeItem("localPage");
+            window.localStorage.setItem(
+              "localPage",
+              JSON.stringify(document.body.outerHTML)
+            );
           });
       }
-    
+
+
+      if (localStorage.getItem("localPage")) {
+        document.body.innerHTML = JSON.parse(localStorage.getItem("localPage"));
         document
           .querySelector(".randomCoctail")
           .addEventListener("click", () => {
@@ -295,79 +327,19 @@
                 showCocktail(drink.idDrink);
               });
           });
-
-
-function router(){
-     let hash = window.location.hash
-
-     if(!hash)
-     return;
-     
-     hash = hash.replace('#','').split('-')
-     console.log(hash)
-     console.log(hash[1])
-     switch(hash[0]){
-        case 'search':
-        fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + hash[1])
-          .then((resp) => resp.json())
-          .then((resp) => {
-            if (!resp.drinks)
-            return document.querySelector('.result').innerHTML = `<p class="alert alert-danger " style=" text-align:center" >Coctail not found</p>`;
-
-            document.querySelector(".result").innerHTML = resp.drinks
-              .map(
-                (drink) => `
-                    <div class="cocktail col-4 mb-3" onclick="showCocktail(${
-                      drink.idDrink
-                    })">
-                        <img src="${drink.strDrinkThumb}" alt="${
-                  drink.strDrink
-                }" />
-                        <h3>${drink.strDrink}</h3>
-                        <div class="d-flex justify-content-between">
-                            <span>${
-                              drink.dateModified ? drink.dateModified : ""
-                            }</span>
-                            <span>${drink.strAlcoholic}</span>
-                        </div>
-                    </div>
-                `
-              )
-              .join("");
+      } else {
+        document
+          .querySelector(".randomCoctail")
+          .addEventListener("click", () => {
+            fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
+              .then((resp) => resp.json())
+              .then((resp) => {
+                const drink = resp.drinks[0];
+                console.log(drink);
+                showCocktail(drink.idDrink);
+              });
           });
-        break;
-        case 'single':
-        showCocktail(hash[1])
-        break;
-        case 'filter':
-        fetch(
-          "https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=" +
-            hash[1]
-        )
-          .then((resp) => resp.json())
-          .then((resp) => {
-            console.log(resp);
-
-            document.querySelector(".result").innerHTML = resp.drinks
-              .map(
-                (drink) => `   
-                    <div class="cocktail col-4 mb-3" onclick="showCocktail(${drink.idDrink})">
-                        <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" />
-                        <h3>${drink.strDrink}</h3>
-                        <p>${hash[1]}</p>
-                    </div>
-                `
-              )
-              .join("");
-          });
-        break;
-        default:
-            console.log("Stop breaking our system")
-     }
-
-    }
-router()
-console.log(window.location)
+      }
     </script>
   </body>
 </html>
