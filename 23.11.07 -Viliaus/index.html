@@ -327,19 +327,7 @@
                 showCocktail(drink.idDrink);
               });
           });
-      } else {
-        document
-          .querySelector(".randomCoctail")
-          .addEventListener("click", () => {
-            fetch("https://www.thecocktaildb.com/api/json/v1/1/random.php")
-              .then((resp) => resp.json())
-              .then((resp) => {
-                const drink = resp.drinks[0];
-                console.log(drink);
-                showCocktail(drink.idDrink);
-              });
-          });
-      }
+      } 
     </script>
   </body>
 </html>
