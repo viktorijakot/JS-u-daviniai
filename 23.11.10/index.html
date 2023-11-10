@@ -99,7 +99,7 @@
 
         if (info) return;
 
-        fetch("http://www.omdbapi.com/?apikey=96949423&i=" + id)
+        fetch("https://www.omdbapi.com/?apikey=96949423&i=" + id)
           .then((resp) => resp.json())
           .then((resp) => {
             e.target.innerHTML += `
