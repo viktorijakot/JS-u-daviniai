@@ -47,7 +47,7 @@
         const pagination = document.querySelector('.paginate');
         let page = 1;
 
-        fetch(`http://www.omdbapi.com/?apikey=96949423&s=batman&type=movie`)
+        fetch(`http://www.omdbapi.com/?apikey=96949423&s=batman&page=1`)
             .then(resp => resp.json())
             .then(resp => {
                 console.log(page)
@@ -117,29 +117,70 @@ console.log(val)
 
         function goToPage(e, targetPage) {
             page = targetPage;
+            console.log(page)
             fetchMovies(e);
         }
 
         function paginate(total) {
             const pages = Math.ceil(total / 10);
 
-            let res = '';
+            let res1 = '';
+            let res2 = ''
+            let res3 = ''
+            let res4 = ''
+            let res5 = ''
 
             for(let i = 1; i <= pages; i++) {
-                res += `
+                if( i < page + 3 && i > page -1 && i < pages -3) {
+                    console.log(i)
+                    console.log(page -1)
+                res1 += `
                     <li class="page-item">
-                        <a class="page-link" href="#">${i}</a>
+                        <button class="page-link" onclick="goToPage(event, ${i})">${i}</button>
+                    </li>
+                `;
+            } else if( i < page ){
+                res1 = ''
+                res1 += `
+                    <li class="page-item">
+                        <button class="page-link" onclick="goToPage(event, ${i})">${i}</button>
                     </li>
                 `;
             }
-
+            if( page > 9 && i < 5 ){
+                res4 += `
+                    <li class="page-item">
+                        <button class="page-link" onclick="goToPage(event, ${i})">${i}</button>
+                    </li>
+                `;
+                res5 = `<li class="page-item">
+                        <a class="page-link">...</a>
+                    </li>`
+            }
+            if (i >= page + 3 && i <= pages -3){
+            res2 = `<li class="page-item">
+                        <a class="page-link">...</a>
+                    </li>`
+            } 
+            if( i > pages - 3){
+                res3 += `
+                    <li class="page-item">
+                        <button class="page-link" onclick="goToPage(event, ${i})">${i}</button>
+                    </li>
+                `;
+            }
+        }
             pagination.innerHTML = `
                 <nav>
                     <ul class="pagination justify-content-center">
                         <li class="page-item ${page === 1 ? 'disabled' : ''}">
                             <button class="page-link" onclick="goToPage(event, ${page - 1})">Previous</button>
                         </li>
-                        ${res}
+                        ${res4}
+                        ${res5}
+                        ${res1}
+                        ${res2}
+                        ${res3}
                         <li class="page-item ${pages === page ? 'disabled' : ''}">
                             <button class="page-link" onclick="goToPage(event, ${page + 1})">Next</button>
                         </li>
