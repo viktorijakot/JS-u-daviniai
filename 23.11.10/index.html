@@ -61,7 +61,7 @@
         e.preventDefault();
 
         const val = document.querySelector('input[type="text"]').value;
-
+        // test
         fetch(`https://www.omdbapi.com/?apikey=96949423&s=${val}&page=${page}`)
           .then((resp) => resp.json())
           .then((resp) => {
