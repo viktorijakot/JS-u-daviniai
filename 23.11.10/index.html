@@ -62,7 +62,7 @@
 
         const val = document.querySelector('input[type="text"]').value;
 
-        fetch(`http://www.omdbapi.com/?apikey=96949423&s=${val}&page=${page}`)
+        fetch(`https://www.omdbapi.com/?apikey=96949423&s=${val}&page=${page}`)
           .then((resp) => resp.json())
           .then((resp) => {
             result.innerHTML = resp.Search.map(
