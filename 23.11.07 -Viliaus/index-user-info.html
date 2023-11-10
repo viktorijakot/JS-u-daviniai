@@ -441,9 +441,41 @@
     <script>
       const title = document.querySelector(".title");
       const titleInfo = document.querySelector(".titleInfo");
-      const icon1 = document.querySelectorAll(".one");
-      const icon2 = document.querySelectorAll(".two");
+    //   const icon1 = document.querySelectorAll(".one");
+    //   const icon2 = document.querySelectorAll(".two");
       const li = document.querySelectorAll("li");
+
+
+      let ground = 0;
+      let ground2 = -50;
+
+      function goingUp(element, element2) {
+        const interval = setInterval(() => {
+          ground += -10;
+          element2.style.display = "block"
+          element.style.marginTop = +ground + "px";
+
+          if (ground === -50) {
+            clearInterval(interval);
+            element.style.display = "none";
+            ground = 0;
+          }
+        }, 60);
+      }
+
+      function goingDown(element, element2) {
+        const interval = setInterval(() => {
+          ground2 += +10;
+          element.style.display = "block"
+          element.style.marginTop = +ground2 + "px";
+
+          if (ground2 === 0) {
+            clearInterval(interval);
+            ground2 = -50;
+            element2.style.display = "none"
+          }
+        }, 60);
+      }
 
       fetch("https://randomuser.me/api/")
         .then((resp) => resp.json())
@@ -476,72 +508,74 @@
 
           li.forEach((a) => {
             a.addEventListener("mouseenter", (e) => {
+              e.preventDefault();
+
               const element1 = e.toElement.childNodes[1];
               const element2 = e.toElement.childNodes[5];
-              let count = 0;
-              console.log(e);
+
               if (!active) {
+                goingUp(element1, element2);
+
                 switch (e.target.className) {
                   case "name":
                     title.textContent = `Hello, My name is`;
                     titleInfo.textContent = `${res.name.first} ${res.name.last}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                   case "email":
                     title.textContent = `My email address is`;
                     titleInfo.textContent = `${res.email}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                   case "date":
                     title.textContent = `My birthday is`;
                     titleInfo.textContent = `${date.replaceAll("-", "/")}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                   case "address":
                     title.textContent = `My address is`;
                     titleInfo.textContent = `${res.location.street.number} ${res.location.street.name}, ${res.location.city}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                   case "phone":
                     title.textContent = `My phone number is`;
                     titleInfo.textContent = `${res.phone}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                   case "password":
                     title.textContent = `My password is`;
                     titleInfo.textContent = `${res.login.password}`;
-                    element1.style.display = "none";
-                    element2.style.display = "block";
-                    active = true;
                     break;
                 }
-              }
-
-              if (active) {
-                icon2.forEach((a) => {
+                active = true;
+              } else {
+                li.forEach((a) => {
                   a.addEventListener("mouseleave", (e) => {
-                    console.log(e);
-                    title.textContent = "";
-                    titleInfo.textContent = "";
-                    a.style.display = "none";
-                    icon1.forEach((c) => {
-                      console.log(c);
-                      c.style.display = "block";
-                      active = false;
-                    });
+                    e.preventDefault()
+                    
+                    const element1 = e.fromElement.childNodes[1];
+                    const element2 = e.fromElement.childNodes[5];
+
+                    title.textContent = ``;
+                    titleInfo.textContent = ``;
+
+                    goingDown(element1, element2)
+                    
+                    active = false;
+                
                   });
                 });
-              } 
+                // icon2.forEach((a) => {
+                //   a.addEventListener("mouseleave", (e) => {
+                //     e.preventDefault();
+                //     console.log(e);
+                //     title.textContent = "";
+                //     titleInfo.textContent = "";
+
+                //     icon1.forEach((c) => {
+                //       console.log(c);
+                //       c.style.display = "block";
+                //     //   a.style.display = "none";
+                //       active = false;
+                //     });
+                //   });
+                // });
+              }
             });
           });
         });
