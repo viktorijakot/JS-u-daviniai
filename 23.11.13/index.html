@@ -135,7 +135,7 @@
           }
         }
         static isimti() {
-          return  this.vaisiai.shift();
+          return  this.vaisiai.shift(Math.max(...this.vaisiai));
         }
       }
 
@@ -155,18 +155,10 @@
       vaisius4.prakasti();
       Krepsys.pripildyti(vaisius4);
 
-
       const vaisius5 = new Vaisius();
       vaisius5.prakasti();
       Krepsys.pripildyti(vaisius5);
 
-      if(Krepsys.isimti().prakastas === true) {
-        Object.assign(grauztukai,{0:Krepsys.isimti()});
-        Object.assign(grauztukai,{1:Krepsys.isimti()})
-      }
-      
-      Krepsys.pripildyti(new Vaisius());
-  
 
       const vaisius6 = new Vaisius();
       vaisius6.prakasti();
@@ -177,11 +169,19 @@
       Krepsys.pripildyti(vaisius7);
 
       const vaisius8 = new Vaisius();
-      vaisius7.prakasti();
-      Krepsys.pripildyti(vaisius7);
+      vaisius8.prakasti();
+      Krepsys.pripildyti(vaisius8);
+
+      const vaisius9 = new Vaisius()
+      Krepsys.pripildyti(vaisius9)
+
+      if(Krepsys.isimti().prakastas === true) {
+        grauztukai[Krepsys.isimti().id] = Krepsys.isimti()
+        grauztukai[Krepsys.isimti().id] = Krepsys.isimti()
+      }
 
 
-      console.log(vaisius1, vaisius2, vaisius3, vaisius4, vaisius5);
+      console.log(vaisius1, vaisius2, vaisius3, vaisius4, vaisius5, vaisius6, vaisius7, vaisius8, vaisius9);
       console.log(Krepsys.vaisiai);
       console.log(grauztukai)
     </script>
