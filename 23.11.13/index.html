@@ -113,77 +113,96 @@
       const grauztukai = {};
 
       class Vaisius {
+        
         constructor() {
           this.dydis = rand(5, 25);
           this.id = rand(1000000, 9999999);
-          this.prakastas = false;
+          this.prakastas = false
         }
         prakasti() {
-          this.prakastas = true;
-          return 
+           this.prakastas = true;
         }
       }
 
       class Krepsys {
         static vaisiai = [];
-        static pripildyti(vaisius) {
-          if (Krepsys.vaisiai.length < 20) {
-            Krepsys.vaisiai.push(vaisius);
+        static pripildyti() {
+          for (let i = 0; i < 20; i++) {
+            if (Krepsys.vaisiai.length < 20) {
+              Krepsys.vaisiai.push((new Vaisius()));
+            }
           }
           if (Krepsys.vaisiai.length > 1) {
             Krepsys.vaisiai.sort((a, b) => b.dydis - a.dydis);
           }
         }
         static isimti() {
-          return  this.vaisiai.shift(Math.max(...this.vaisiai));
+          let number = this.vaisiai.shift(Math.max(...this.vaisiai));
+          
+          if (number.prakastas === true){
+          return (grauztukai[number.id] = number);
+          }
         }
       }
 
-      const vaisius1 = new Vaisius();
-      vaisius1.prakasti();
-      Krepsys.pripildyti(vaisius1);
+        // const vaisius1 = new Vaisius();
+        // vaisius1.prakasti();
+      // //   Krepsys.pripildyti(vaisius1);
 
-      const vaisius2 = new Vaisius();
-      vaisius2.prakasti();
-      Krepsys.pripildyti(vaisius2);
+    //   console.log(vaisius1)
 
-      const vaisius3 = new Vaisius();
-      vaisius3.prakasti();
-      Krepsys.pripildyti(vaisius3);
+      //   const vaisius2 = new Vaisius();
+      //   vaisius2.prakasti();
+      // //   Krepsys.pripildyti(vaisius2);
 
-      const vaisius4 = new Vaisius();
-      vaisius4.prakasti();
-      Krepsys.pripildyti(vaisius4);
+      //   const vaisius3 = new Vaisius();
+      //   vaisius3.prakasti();
+      // //   Krepsys.pripildyti(vaisius3);
 
-      const vaisius5 = new Vaisius();
-      vaisius5.prakasti();
-      Krepsys.pripildyti(vaisius5);
+      //   const vaisius4 = new Vaisius();
+      //   vaisius4.prakasti();
+      // //   Krepsys.pripildyti(vaisius4);
 
+      //   const vaisius5 = new Vaisius();
+      //   vaisius5.prakasti();
+      // //   Krepsys.pripildyti(vaisius5);
 
-      const vaisius6 = new Vaisius();
-      vaisius6.prakasti();
-      Krepsys.pripildyti(vaisius6);
+      //   const vaisius6 = new Vaisius();
+      //   vaisius6.prakasti();
+      // //   Krepsys.pripildyti(vaisius6);
 
-      const vaisius7 = new Vaisius();
-      vaisius7.prakasti();
-      Krepsys.pripildyti(vaisius7);
+      //   const vaisius7 = new Vaisius();
+      //   vaisius7.prakasti();
+      // //   Krepsys.pripildyti(vaisius7);
 
-      const vaisius8 = new Vaisius();
-      vaisius8.prakasti();
-      Krepsys.pripildyti(vaisius8);
+      //   const vaisius8 = new Vaisius();
+      //   vaisius8.prakasti();
+      // //   Krepsys.pripildyti(vaisius8);
 
-      const vaisius9 = new Vaisius()
-      Krepsys.pripildyti(vaisius9)
+      //   const vaisius9 = new Vaisius()
+      //   Krepsys.pripildyti(vaisius9)
 
-      if(Krepsys.isimti().prakastas === true) {
-        grauztukai[Krepsys.isimti().id] = Krepsys.isimti()
-        grauztukai[Krepsys.isimti().id] = Krepsys.isimti()
-      }
+      //   const isimti1 = Krepsys.isimti()
+      //   const isimti2 = Krepsys.isimti()
 
+      //   if(Krepsys.isimti().prakastas === true) {
+      //     grauztukai[isimti1.id] = isimti1
+      //     grauztukai[isimti2.id] = isimti2
+      //   }
 
-      console.log(vaisius1, vaisius2, vaisius3, vaisius4, vaisius5, vaisius6, vaisius7, vaisius8, vaisius9);
+      Krepsys.pripildyti();
+
+      Krepsys.isimti();
+      Krepsys.pripildyti();
+      Krepsys.isimti();
+      Krepsys.isimti();
+      
+      Krepsys.pripildyti();
+      Krepsys.isimti();
+
+      //   console.log(vaisius1, vaisius2, vaisius3, vaisius4, vaisius5, vaisius6, vaisius7, vaisius8, vaisius9);
       console.log(Krepsys.vaisiai);
-      console.log(grauztukai)
+      console.log(grauztukai);
     </script>
   </body>
 </html>
