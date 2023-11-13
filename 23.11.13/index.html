@@ -120,6 +120,7 @@
         }
         prakasti() {
           this.prakastas = true;
+          return 
         }
       }
 
@@ -159,10 +160,13 @@
       vaisius5.prakasti();
       Krepsys.pripildyti(vaisius5);
 
-
       if(Krepsys.isimti().prakastas === true) {
-        Object.assign(grauztukai,Krepsys.isimti());
+        Object.assign(grauztukai,{0:Krepsys.isimti()});
+        Object.assign(grauztukai,{1:Krepsys.isimti()})
       }
+      
+      Krepsys.pripildyti(new Vaisius());
+  
 
       const vaisius6 = new Vaisius();
       vaisius6.prakasti();
