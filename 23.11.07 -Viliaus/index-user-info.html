@@ -108,6 +108,14 @@
       padding-left: 10px;
       padding-right: 10px;
     }
+
+    .one:hover {
+      margin-top: -20px;
+    stroke: #83ba43;
+    }
+    path:hover{
+      stroke: #83ba43;
+    }
   </style>
 
   <body>
@@ -449,33 +457,33 @@
       let ground = 0;
       let ground2 = -50;
 
-      function goingUp(element, element2) {
-        const interval = setInterval(() => {
-          ground += -10;
-          element2.style.display = "block"
-          element.style.marginTop = +ground + "px";
+      // function goingUp(element, element2) {
+      //   const interval = setInterval(() => {
+      //     ground += -10;
+      //     element2.style.display = "block"
+      //     element.style.marginTop = +ground + "px";
 
-          if (ground === -50) {
-            clearInterval(interval);
-            element.style.display = "none";
-            ground = 0;
-          }
-        }, 60);
-      }
+      //     if (ground === -50) {
+      //       clearInterval(interval);
+      //       element.style.display = "none";
+      //       ground = 0;
+      //     }
+      //   }, 60);
+      // }
 
-      function goingDown(element, element2) {
-        const interval = setInterval(() => {
-          ground2 += +10;
-          element.style.display = "block"
-          element.style.marginTop = +ground2 + "px";
+      // function goingDown(element, element2) {
+      //   const interval = setInterval(() => {
+      //     ground2 += +10;
+      //     element.style.display = "block"
+      //     element.style.marginTop = +ground2 + "px";
 
-          if (ground2 === 0) {
-            clearInterval(interval);
-            ground2 = -50;
-            element2.style.display = "none"
-          }
-        }, 60);
-      }
+      //     if (ground2 === 0) {
+      //       clearInterval(interval);
+      //       ground2 = -50;
+      //       element2.style.display = "none"
+      //     }
+      //   }, 60);
+      // }
 
       fetch("https://randomuser.me/api/")
         .then((resp) => resp.json())
@@ -514,7 +522,7 @@
               const element2 = e.toElement.childNodes[5];
 
               if (!active) {
-                goingUp(element1, element2);
+                // goingUp(element1, element2);
 
                 switch (e.target.className) {
                   case "name":
@@ -554,7 +562,7 @@
                     title.textContent = ``;
                     titleInfo.textContent = ``;
 
-                    goingDown(element1, element2)
+                    // goingDown(element1, element2)
                     
                     active = false;
                 
