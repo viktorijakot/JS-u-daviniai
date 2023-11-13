@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function rand(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      }
+
+      // --- PIRMA UŽDUOTIS
+      //Aprašykite klasę “Televizorius” su nurodytomis
+      //savybėmis: Gamintojas, kanalas ir garsas. Gamintojo
+      //pavadinimą priskirkite konstruktoriuje kaip gautą
+      //parametrą. Vos tik įjungus televizorių turėtų būti
+      //parinktas pirmas kanalas, o garso lygis 50. Sukurkite
+      //metodus kurie padidintų ir sumažintų televizoriaus garsą,
+      //tačiau šis niekuomet negali būti žemiau nei 0 ir aukščiau
+      //nei 100.
+      //Sukurkite metodą kuris keistų kanalą, tačiau
+      //atkreipkite dėmesį, kad gal televizorius jų turi
+      //tik 50, tad jei pultelyje įvesite didesnį skaičių,
+      //kanalas turi būti pakeičiamas į pirmajį.
+      //Sukurkite metodą, kuris atstatytų televizorių atgal
+      // į gamyklinius parametrus.
+      //Sukurkite metodą, kuris grąžintų atgal eilutę
+      //“Televizorius ‘Sony’ šiuo metu rodo 8 kanalą.
+      //Garso lygis 76.”
+
+      class televizorius {
+        gamintojas;
+        kanalas;
+        garsas;
+        kanaluSkaicius = rand(1, 100);
+
+        constructor(gamintojas) {
+          this.gamintojas = gamintojas;
+          this.kanalas = 1;
+          this.garsas = 50;
+        }
+        garsinti() {
+          if (this.garsas < 100) {
+            this.garsas++;
+          }
+        }
+        tylinti() {
+          if (this.garsas > 0) {
+            this.garsas--;
+          }
+        }
+        keistiKanala(number) {
+          if (number <= this.kanaluSkaicius) {
+            this.kanalas = number;
+          } else this.kanalas = 1;
+        }
+        atstatytiParametrus() {
+          this.kanalas = 1;
+          this.garsas = 50;
+        }
+        info() {
+          console.log(
+            `Televizorius ${this.gamintojas} šiuo metu rodo ${this.kanalas} kanalą. Garso lygis ${this.garsas}`
+          );
+        }
+      }
+
+      const tel1 = new televizorius("Sony");
+      tel1.tylinti();
+      tel1.tylinti();
+      tel1.garsinti();
+      tel1.keistiKanala(600);
+      tel1.atstatytiParametrus();
+      tel1.info();
+      tel1.keistiKanala(29);
+      tel1.info();
+
+      console.log(tel1);
+
+      //--- ANTRA UŽDUOTIS
+      //Sukurkite klasę Vaisius, kuris turi:
+      //savybę dydis rand 5 - 25;
+      //savybę id rand 1000000 - 9999999
+      //savybę prakastas false
+
+      //Sukurkite metodą prakasti(), kuris savybės prakąstas
+      //reikšmę keistų į true.
+      //Sukurkite klasę Krepšys, kuri turi statinę savybę
+      //vaisiai, kuri yra masyvas.
+      //Klasėje Krepšys sukurkite statinį metodą pripildyti(),
+      //kuris savybę vaisiai užpildytų 20-timi Vaisius objektų ir
+      //išrūšiuotų juos pagal vaisiaus dydį nuo didžiausio iki
+      //mažiausio.
+      //Klasėje Krepšys sukurti statinį metodą isimti(), kuris
+      //iš vaisiai masyvo išimtų (ištrintų iš masyvo) pirmą
+      //(didžiausią) vaisių ir jį grąžintų.
+      //Išėmus kelis vaisius ir vėl paleidus metodą papildyti(),
+      //jis turi padaryti tai ką sako metodo pavadinimas -
+      //papildyti masyvą iki pilno (20 elementų), o ne perrašyti
+      //visus vaisius iš naujo (tai galima stebėti pagal vaisių id).
+      //Išorėje (globale) sukurti kintamąjį grauztukai kuris yra
+      //objektas.
+      //Iš krepšelio išimti vaisiai turi būti pridedami į
+      //šį objektą. Kaip raktus naudoti Vaisius objekto id savybę.
+      //Prieš patalpinant vaisių į grauztukai objektą, vaisius
+      //turi būti “prakąstas”, Vaisius objekte paleidžiant
+      //prakasti() metodą.
+
+      const grauztukai = {};
+
+      class Vaisius {
+        constructor() {
+          this.dydis = rand(5, 25);
+          this.id = rand(1000000, 9999999);
+          this.prakastas = false;
+        }
+        prakasti() {
+          this.prakastas = true;
+        }
+      }
+
+      class Krepsys {
+        static vaisiai = [];
+        static pripildyti(vaisius) {
+          if (Krepsys.vaisiai.length < 20) {
+            Krepsys.vaisiai.push(vaisius);
+          }
+          if (Krepsys.vaisiai.length > 1) {
+            Krepsys.vaisiai.sort((a, b) => b.dydis - a.dydis);
+          }
+        }
+        static isimti() {
+          return  this.vaisiai.shift();
+        }
+      }
+
+      const vaisius1 = new Vaisius();
+      vaisius1.prakasti();
+      Krepsys.pripildyti(vaisius1);
+
+      const vaisius2 = new Vaisius();
+      vaisius2.prakasti();
+      Krepsys.pripildyti(vaisius2);
+
+      const vaisius3 = new Vaisius();
+      vaisius3.prakasti();
+      Krepsys.pripildyti(vaisius3);
+
+      const vaisius4 = new Vaisius();
+      vaisius4.prakasti();
+      Krepsys.pripildyti(vaisius4);
+
+
+      const vaisius5 = new Vaisius();
+      vaisius5.prakasti();
+      Krepsys.pripildyti(vaisius5);
+
+
+      if(Krepsys.isimti().prakastas === true) {
+        Object.assign(grauztukai,Krepsys.isimti());
+      }
+
+      const vaisius6 = new Vaisius();
+      vaisius6.prakasti();
+      Krepsys.pripildyti(vaisius6);
+
+      const vaisius7 = new Vaisius();
+      vaisius7.prakasti();
+      Krepsys.pripildyti(vaisius7);
+
+      const vaisius8 = new Vaisius();
+      vaisius7.prakasti();
+      Krepsys.pripildyti(vaisius7);
+
+
+      console.log(vaisius1, vaisius2, vaisius3, vaisius4, vaisius5);
+      console.log(Krepsys.vaisiai);
+      console.log(grauztukai)
+    </script>
+  </body>
+</html>
